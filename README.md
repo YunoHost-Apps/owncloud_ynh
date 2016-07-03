@@ -5,7 +5,7 @@ ownCloud for YunoHost
 own data. A personal cloud which run on your own server. With owncloud
 you can synchronize your files over your devices.
 
-**Shipped version:** 9.0.2
+**Shipped version:** 9.0.3
 
 ![](https://github.com/owncloud/screenshots/blob/master/files/sidebar_1.png)
 
