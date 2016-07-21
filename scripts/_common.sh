@@ -5,7 +5,7 @@
 APPNAME="owncloud"
 
 # ownCloud version
-VERSION="9.0.3"
+VERSION="9.0.4"
 
 # Package name for ownCloud dependencies
 DEPS_PKG_NAME="owncloud-deps"
@@ -14,7 +14,7 @@ DEPS_PKG_NAME="owncloud-deps"
 OWNCLOUD_SOURCE_URL="https://download.owncloud.org/community/owncloud-${VERSION}.tar.bz2"
 
 # Remote URL to fetch ownCloud tarball checksum
-OWNCLOUD_SOURCE_SHA256="5cf45c1b75434496635a58fcbece668bc0abb40f04d8304ce6d01e6b75887f60"
+OWNCLOUD_SOURCE_SHA256="ab71e8648c918629f6551333c45dd3b79d90f1dc0171d3def0a443bdc238a669"
 
 # App package root directory should be the parent folder
 PKGDIR=$(cd ../; pwd)
