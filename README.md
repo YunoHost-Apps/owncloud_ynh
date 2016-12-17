@@ -33,6 +33,5 @@ installation. You will just have to manually activate them after the upgrade.
 
 ## Links
 
- * Report a bug: https://dev.yunohost.org/projects/apps/issues
  * ownCloud website: https://owncloud.org/
  * YunoHost website: https://yunohost.org/
