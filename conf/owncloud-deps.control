@@ -5,7 +5,7 @@ Standards-Version: 3.9.2
 
 Package: owncloud-deps
 Version: 9.0.0-1
-Depends: acl, php5-cli, php5-apcu, tar, smbclient
+Depends: acl, php5-cli, php5-apcu, tar, smbclient, php5-zip
 Architecture: all
 Description: meta package for owncloud dependencies
  ownCloud gives you universal access to your files through a web
