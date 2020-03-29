@@ -1,6 +1,8 @@
 ownCloud for YunoHost
 ---------------------
 
+[![Integration level](https://dash.yunohost.org/integration/owncloud.svg)](https://dash.yunohost.org/appci/app/owncloud) ![](https://ci-apps.yunohost.org/ci/badges/owncloud.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/owncloud.maintain.svg)
+
 [ownCloud](https://owncloud.org) gives you freedom and control over your
 own data. A personal cloud which run on your own server. With owncloud
 you can synchronize your files over your devices.
@@ -14,11 +16,11 @@ you can synchronize your files over your devices.
 In addition to ownCloud core features, the following are made available with
 this package:
 
- * Integrate with YunoHost users and SSO - i.e. logout button
+ * Integrate with YunoHost users and SSO - i logout button
  * Allow one user to be the administrator (set at the installation)
  * Optionally access the user home folder from ownCloud files (set at the installation)
  * Serve `/.well-known` paths for CalDAV and CardDAV on the domain only if it's
-   not already served - i.e. by Baïkal
+   not already served - i by Baïkal
 
 ## Limitations
 
