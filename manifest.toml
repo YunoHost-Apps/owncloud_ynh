@@ -2,8 +2,8 @@ packaging_format = 2
 
 id = "owncloud"
 name = "ownCloud"
-description.en = "Explain in *a few (10~15) words* the purpose of the app or what it actually does (it is meant to give a rough idea to users browsing a catalog of 100+ apps)"
-description.fr = "Expliquez en *quelques* (10~15) mots l'utilité de l'app ou ce qu'elle fait (l'objectif est de donner une idée grossière pour des utilisateurs qui naviguent dans un catalogue de 100+ apps)"
+description.en = "Online storage, file sharing platform and various other applications"
+description.fr = "Stockage en ligne, plateforme de partage de fichiers et diverses autres applications"
 
 version = "4.0.1.~ynh1"
 
@@ -12,7 +12,6 @@ maintainers = [""]
 [upstream]
 license = "Apache-2.0"
 website = "https://owncloud.com"
-demo = "https://demo.example.com"
 admindoc = "https://doc.owncloud.com/"
 code = "https://github.com/owncloud/ocis"
 
