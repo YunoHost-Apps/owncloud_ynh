@@ -1,178 +1,71 @@
 #!/bin/bash
 
-set -eu
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
 
-# Get multi-instances specific variables
-app=$YNH_APP_INSTANCE_NAME
+source _common.sh
+source /usr/share/yunohost/helpers
 
-# Retrieve arguments
-domain=$1
-path=${2%/}
-admin=$3
-user_home=$4
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression --message="Setting up source files..." --weight=1
 
-# Load common variables
-. ./_common.sh
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$install_dir"
 
-# Set app specific variables
-dbname=$app
-dbuser=$app
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
+chmod +x $install_dir/owncloud
 
-# Source app helpers
-. /usr/share/yunohost/helpers
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring NGINX web server..." --weight=1
 
-# TODO: Check domain/path availability with app helper
-sudo yunohost app checkurl $domain$path -a $app \
-  || ynh_die "The path ${domain}${path} is not available for app installation."
+# Create a dedicated NGINX config
+ynh_add_nginx_config
 
-# Check user parameter
-ynh_user_exists "$admin" \
-  || ynh_die "The chosen admin user does not exist."
-ynh_app_setting_set $app admin_user $admin
+# Create a dedicated systemd config
+ynh_add_systemd_config
 
-# Check destination directory
-DESTDIR="/var/www/$app"
-[[ -d $DESTDIR ]] && ynh_die \
-"The destination directory '$DESTDIR' already exists.\
- You should safely delete it before installing this app."
+yunohost service add $app --description="File sharing platform" --log="/var/log/$app/$app.log"
 
-# Define app's data directory
-DATADIR="/home/yunohost.app/${app}/data"
+#=================================================
+# ADD A CONFIGURATION
+#=================================================
+#ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-# Install dependencies
-ynh_package_install_from_equivs ../conf/${DEPS_PKG_NAME}.control \
-  || ynh_die "Unable to install dependencies"
+#ynh_add_config --template="../conf/.env" --destination="$install_dir/.env"
 
-# Generate random password
-dbpass=$(ynh_string_random)
+#chmod 600 "$install_dir/.env"
+#chown $app:$app "$install_dir/.env"
 
-# Initialize database
-ynh_mysql_create_db $dbname $dbuser $dbpass
+#=================================================
+# INSTALL OWNCLOUD
+#=================================================
+ynh_script_progression --message="Installing $app..." --weight=3
 
-# Create a system account for ownCloud
-sudo useradd -c "$app system account" \
-    -d /var/lib/$app --system --user-group $app \
-  || ynh_die "Unable to create $app system account"
+(cd "$install_dir" && ./owncloud init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir/.ocis/config) 
 
-# Set system group in hooks
-sed -i "s@#GROUP#@${app}@g" ../hooks/post_user_create
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
-# Create app folders
-sudo mkdir -p "$DESTDIR" "$DATADIR"
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression --message="Starting a systemd service..." --weight=1
 
-# Copy ownCloud configuration file
-oc_conf="${DESTDIR}/config.json"
-sed -i "s@#DOMAIN#@${domain}@g" ../conf/config.json
-sed -i "s@#DATADIR#@${DATADIR}@g" ../conf/config.json
-sudo cp ../conf/config.json "$oc_conf"
+# Start a systemd service
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
 
-# Copy and set nginx configuration
-nginx_conf="/etc/nginx/conf.d/${domain}.d/${app}.conf"
-sed -i "s@#APP#@${app}@g"          ../conf/nginx.conf
-sed -i "s@#PATH#@${path}@g"        ../conf/nginx.conf
-sed -i "s@#LOCATION#@${path:-/}@g" ../conf/nginx.conf
-sed -i "s@#DESTDIR#@${DESTDIR}@g"  ../conf/nginx.conf
-# do not serve .well-known if it's already served on the domain
-if is_url_handled "https://${domain}/.well-known/caldav" ; then
-  sed -ri '/^location = \/\.well\-known\/(caldav|carddav) \{/,/\}/d' \
-      ../conf/nginx.conf
-fi
-sudo cp ../conf/nginx.conf "$nginx_conf"
+#=================================================
+# END OF SCRIPT
+#=================================================
 
-# Copy and set php-fpm configuration
-phpfpm_conf="/etc/php5/fpm/pool.d/${app}.conf"
-sed -i "s@#USER#@${app}@g"         ../conf/php-fpm.conf
-sed -i "s@#GROUP#@${app}@g"        ../conf/php-fpm.conf
-sed -i "s@#POOLNAME#@${app}@g"     ../conf/php-fpm.conf
-sed -i "s@#DESTDIR#@${DESTDIR}/@g" ../conf/php-fpm.conf
-sudo cp ../conf/php-fpm.conf "$phpfpm_conf"
-sudo chown root: $phpfpm_conf
-sudo chmod 644 $phpfpm_conf
-
-# occ helper for the current installation
-_exec_occ() {
-  exec_occ "$DESTDIR" "$app" $@
-}
-
-# Set app folders ownership
-sudo chown -R $app: "$DESTDIR" "$DATADIR"
-
-# Retrieve ownCloud sources
-extract_owncloud "$DESTDIR" "$app"
-
-# Install ownCloud using a temporary admin user
-_exec_occ maintenance:install \
-    --database "mysql" --database-name "$dbname" \
-    --database-user "$dbuser" --database-pass "$dbpass" \
-    --admin-user "admin" --admin-pass "$(ynh_string_random 6)" \
-    --data-dir "$DATADIR" \
-  || ynh_die "Unable to install ownCloud"
-
-# Enable plugins and set ownCloud configuration
-_exec_occ app:enable user_ldap
-_exec_occ ldap:create-empty-config
-_exec_occ config:import "$oc_conf"
-sudo rm -f "$oc_conf"
-
-# Check LDAP configuratio to see if everything worked well
-_exec_occ ldap:test-config \'\' \
-  || ynh_die "An error occured during LDAP configuration"
-
-# Enable External Storage and create local mount to home folder
-if [[ $user_home -eq 1 ]]; then
-  _exec_occ app:enable files_external
-  _exec_occ files_external:create \
-      'Home' 'local' 'null::null' -c 'datadir=/home/$user'
-fi
-
-# Add dynamic logout URL to the config
-_exec_occ config:system:get logout_url >/dev/null 2>&1 \
-  || sudo su -c "echo \"
-//-YunoHost-
-// set logout_url according to main domain
-\\\$main_domain = exec('cat /etc/yunohost/current_host');
-\\\$CONFIG['logout_url'] = 'https://'.\\\$main_domain.'/yunohost/sso/?action=logout';
-//-YunoHost-
-\" >> ${DESTDIR}/config/config.php" -- $app
-
-# Set the user as admin and delete admin user
-ynh_mysql_connect_as $dbuser $dbpass $dbname \
-    <<< "INSERT INTO oc_group_user VALUES ('admin','$admin');"
-_exec_occ user:delete admin
-
-# Iterate over users to extend their home folder permissions - for the external
-# storage plugin usage - and create relevant ownCloud directories
-for u in $(ynh_user_list); do
-  sudo mkdir -p "${DATADIR}/${u}"
-  sudo setfacl -m g:$app:rwx "/home/$u" || true
-done
-
-# Fix app ownerships & permissions
-sudo chown -R $app: "$DESTDIR" "$DATADIR"
-sudo find ${DESTDIR}/ -type f -print0 | sudo xargs -0 chmod 0644
-sudo find ${DESTDIR}/ -type d -print0 | sudo xargs -0 chmod 0755
-sudo find ${DATADIR}/ -type f -print0 | sudo xargs -0 chmod 0640
-sudo find ${DATADIR}/ -type d -print0 | sudo xargs -0 chmod 0750
-sudo chmod 640 "${DESTDIR}/config/config.php"
-sudo chmod 755 /home/yunohost.app
-
-# Store app settings
-ynh_app_setting_set "$app" user_home "$user_home"
-ynh_app_setting_set "$app" mysqlpwd "$dbpass"
-
-# Set SSOwat rules
-ynh_app_setting_set "$app" unprotected_uris "/"
-ynh_app_setting_set "$app" skipped_regex \
-    "$(sed 's/[\.\-]/\%&/g' <<< $domain)/%.well%-known/.*"
-
-# Reload services
-sudo service php5-fpm restart || true
-sudo service nginx reload || true
-
-# Add cron job
-cron_path="/etc/cron.d/$app"
-sed -i "s@#USER#@${app}@g"        ../conf/owncloud.cron
-sed -i "s@#DESTDIR#@${DESTDIR}@g" ../conf/owncloud.cron
-sudo cp ../conf/owncloud.cron "$cron_path"
-sudo chmod 644 "$cron_path"
-_exec_occ background:cron
+ynh_script_progression --message="Installation of $app completed" --last

@@ -1,48 +1,35 @@
 #!/bin/bash
 
-# Get multi-instances specific variables
-app=$YNH_APP_INSTANCE_NAME
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
 
-# Set app specific variables
-dbname=$app
-dbuser=$app
+source _common.sh
+source /usr/share/yunohost/helpers
 
-# Load common variables and helpers
-. ./_common.sh
+#=================================================
+# STANDARD REMOVE
+#=================================================
+# REMOVE SERVICE INTEGRATION IN YUNOHOST
+#=================================================
 
-# Source app helpers
-. /usr/share/yunohost/helpers
+# Remove the service from the list of services known by YunoHost (added from `yunohost service add`)
+if ynh_exec_warn_less yunohost service status $app >/dev/null
+then
+	ynh_script_progression --message="Removing $app service integration..." --weight=1
+	yunohost service remove $app
+fi
 
-# Remove cron job
-# TODO: Ensure that cron job is not running
-sudo rm -f "/etc/cron.d/${app}"
+# Remove the dedicated systemd config
+ynh_remove_systemd_config
 
-# Drop MySQL database and user
-ynh_mysql_drop_db "$dbname" 2>/dev/null || true
-ynh_mysql_drop_user "$dbuser" 2>/dev/null || true
+# Remove the dedicated NGINX config
+ynh_remove_nginx_config
 
-# Retrieve domain from app settings
-domain=$(ynh_app_setting_get $app domain)
+#=================================================
+# END OF SCRIPT
+#=================================================
 
-# Delete app directory and configurations
-sudo rm -rf "/var/www/${app}"
-sudo rm -f "/etc/php5/fpm/pool.d/${app}.conf"
-[[ -n $domain ]] && sudo rm -f "/etc/nginx/conf.d/${domain}.d/${app}.conf"
-
-# Reload services
-sudo service php5-fpm restart || true
-sudo service nginx reload || true
-
-# Remove app dependencies
-ynh_package_autoremove "$DEPS_PKG_NAME" || true
-
-# Clean home folders ACLs
-for i in $(ls /home); do
-  [[ ! $i == yunohost.* ]] \
-    && sudo setfacl -x g:$app:rwx >/dev/null 2>&1
-done
-
-# Remove the user account
-id "$app" >/dev/null 2>&1 \
-  && sudo deluser --quiet --remove-home "$app" >/dev/null \
-  || true
+ynh_script_progression --message="Removal of $app completed" --last

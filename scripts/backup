@@ -1,39 +1,46 @@
 #!/bin/bash
 
-set -eu
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
 
-# Get multi-instances specific variables
-app=$YNH_APP_INSTANCE_NAME
+# Keep this path for calling _common.sh inside the execution's context of backup and restore scripts
+source ../settings/scripts/_common.sh
+source /usr/share/yunohost/helpers
 
-# Set app specific variables
-dbname=$app
-dbuser=$app
+#=================================================
+# DECLARE DATA AND CONF FILES TO BACKUP
+#=================================================
+ynh_print_info --message="Declaring files to be backed up..."
 
-# Source app helpers
-. /usr/share/yunohost/helpers
+#=================================================
+# BACKUP THE APP MAIN DIR
+#=================================================
 
-# Retrieve app settings
-domain=$(ynh_app_setting_get "$app" domain)
-path=$(ynh_app_setting_get "$app" path)
-dbpass=$(ynh_app_setting_get "$app" mysqlpwd)
+ynh_backup --src_path="$install_dir"
 
-# Copy the app source files
-DESTDIR="/var/www/$app"
-ynh_backup "$DESTDIR" "www"
+#=================================================
+# BACKUP THE DATA DIR
+#=================================================
 
-# Copy the data directory
-DATADIR="/home/yunohost.app/${app}/data"
-ynh_backup "$DATADIR" "data" 1
+ynh_backup --src_path="$data_dir" --is_big
 
-# Copy the conf files
-mkdir ./conf
-ynh_backup "/etc/nginx/conf.d/${domain}.d/${app}.conf" "conf/nginx.conf"
-ynh_backup "/etc/php5/fpm/pool.d/${app}.conf" "conf/php-fpm.conf"
-ynh_backup "/etc/cron.d/${app}" "conf/cron"
+#=================================================
+# BACKUP THE NGINX CONFIGURATION
+#=================================================
 
-# Dump the database
-mysqldump -u "$dbuser" -p"$dbpass" --no-create-db "$dbname" > ./db.sql
+ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
-# Copy the control file of the dependency package
-# FIXME: find a way to retrieve package name from _common.sh?
-dpkg-query -s owncloud-deps > ./owncloud-deps.control
+#=================================================
+# BACKUP SYSTEMD
+#=================================================
+
+ynh_backup --src_path="/etc/systemd/system/$app.service"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_print_info --message="Backup script completed for $app. (YunoHost will then actually copy those files to the archive)."
