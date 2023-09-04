@@ -29,8 +29,6 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 
 **Shipped version:** 4.0.1.~ynh1
 
-**Demo:** https://demo.example.com
-
 ## Screenshots
 
 ![Screenshot of ownCloud](./doc/screenshots/example.jpg)

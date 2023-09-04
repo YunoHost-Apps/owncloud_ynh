@@ -29,8 +29,6 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 
 **Version incluse :** 4.0.1.~ynh1
 
-**Démo :** https://demo.example.com
-
 ## Captures d’écran
 
 ![Capture d’écran de ownCloud](./doc/screenshots/example.jpg)
