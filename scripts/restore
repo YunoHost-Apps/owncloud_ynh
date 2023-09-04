@@ -1,86 +1,66 @@
 #!/bin/bash
 
-set -eu
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
 
-# Get multi-instances specific variables
-app=$YNH_APP_INSTANCE_NAME
+# Keep this path for calling _common.sh inside the execution's context of backup and restore scripts
+source ../settings/scripts/_common.sh
+source /usr/share/yunohost/helpers
 
-# Set app specific variables
-dbname=$app
-dbuser=$app
+#=================================================
+# RESTORE THE APP MAIN DIR
+#=================================================
+ynh_script_progression --message="Restoring the app main directory..." --weight=1
 
-# Source app helpers
-. /usr/share/yunohost/helpers
+ynh_restore_file --origin_path="$install_dir"
 
-# Retrieve old app settings
-domain=$(ynh_app_setting_get $app domain)
-path=$(ynh_app_setting_get $app path)
-dbpass=$(ynh_app_setting_get $app mysqlpwd)
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
+chmod +x $install_dir/owncloud
 
-# TODO: Check domain/path availability with app helper
-sudo yunohost app checkurl $domain$path -a $app \
-  || ynh_die "The path ${domain}${path} is not available for app installation."
+#=================================================
+# RESTORE THE DATA DIRECTORY
+#=================================================
+ynh_script_progression --message="Restoring the data directory..." --weight=1
 
-# Check destination directory
-DESTDIR="/var/www/$app"
-[[ -d $DESTDIR ]] && ynh_die \
-"The destination directory '$DESTDIR' already exists.\
- You should safely delete it before restoring this app."
+ynh_restore_file --origin_path="$data_dir" --not_mandatory
 
-# Define app's data directory
-DATADIR="/home/yunohost.app/${app}/data"
+chown -R $app:www-data "$data_dir"
 
-# Check configuration files
-nginx_conf="/etc/nginx/conf.d/${domain}.d/${app}.conf"
-[[ -f $nginx_conf ]] && ynh_die \
-"The NGINX configuration already exists at '${nginx_conf}'.
- You should safely delete it before restoring this app."
-phpfpm_conf="/etc/php5/fpm/pool.d/${app}.conf"
-[[ -f $phpfpm_conf ]] && ynh_die \
-"The PHP FPM configuration already exists at '${phpfpm_conf}'.
- You should safely delete it before restoring this app."
+#=================================================
+# RESTORE THE NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Restoring the NGINX web server configuration..." --time --weight=1
 
-# Install dependencies
-ynh_package_install_from_equivs ./owncloud-deps.control \
-  || ynh_die "Unable to install dependencies"
+ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
-# Create a system account for ownCloud
-sudo useradd -c "$app system account" \
-    -d /var/lib/$app --system --user-group $app \
-  || ynh_die "Unable to create $app system account"
+ynh_restore_file --origin_path="/etc/systemd/system/$app.service"
+systemctl enable $app.service --quiet
 
-# Restore the app files
-sudo cp -a ./www "$DESTDIR"
-sudo mkdir -p "$DATADIR"
-sudo cp -a ./data/. "$DATADIR"
+yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
 
-# Create and restore the database
-ynh_mysql_create_db $dbname $dbuser $dbpass
-ynh_mysql_connect_as $dbuser $dbpass $dbname < ./db.sql
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression --message="Starting a systemd service..." --weight=1
 
-# Iterate over users to extend their home folder permissions - for the external
-# storage plugin usage - and create relevant ownCloud directories
-for u in $(ynh_user_list); do
-  sudo mkdir -p "${DATADIR}/${u}"
-  sudo setfacl -m g:$app:rwx "/home/$u" || true
-done
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
 
-# Fix app ownerships & permissions
-sudo chown -R $app: "$DESTDIR" "$DATADIR"
-sudo find ${DESTDIR}/ -type f -print0 | sudo xargs -0 chmod 0644
-sudo find ${DESTDIR}/ -type d -print0 | sudo xargs -0 chmod 0755
-sudo find ${DATADIR}/ -type f -print0 | sudo xargs -0 chmod 0640
-sudo find ${DATADIR}/ -type d -print0 | sudo xargs -0 chmod 0750
-sudo chmod 640 "${DESTDIR}/config/config.php"
-sudo chmod 755 /home/yunohost.app
+#=================================================
+# GENERIC FINALIZATION
+#=================================================
+# RELOAD NGINX AND PHP-FPM
+#=================================================
+ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
-# Restore configuration files
-sudo cp -a ./conf/nginx.conf   "$nginx_conf"
-sudo cp -a ./conf/php-fpm.conf "$phpfpm_conf"
+ynh_systemd_action --service_name=nginx --action=reload
 
-# Restore cron job
-sudo cp -a ./conf/cron "/etc/cron.d/${app}"
+#=================================================
+# END OF SCRIPT
+#=================================================
 
-# Reload services
-sudo service php5-fpm restart || true
-sudo service nginx reload || true
+ynh_script_progression --message="Restoration completed for $app" --last

@@ -1,177 +1,85 @@
 #!/bin/bash
 
-set -eu
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
 
-# Get multi-instances specific variables
-app=$YNH_APP_INSTANCE_NAME
+source _common.sh
+source /usr/share/yunohost/helpers
 
-# Load common variables and helpers
-. ./_common.sh
+#=================================================
+# CHECK VERSION
+#=================================================
 
-# Set app specific variables
-dbname=$app
-dbuser=$app
+upgrade_type=$(ynh_check_app_version_changed)
 
-# Source app helpers
-. /usr/share/yunohost/helpers
+#=================================================
+# STANDARD UPGRADE STEPS
+#=================================================
+# STOP SYSTEMD SERVICE
+#=================================================
+ynh_script_progression --message="Stopping a systemd service..." --weight=1
 
-# Retrieve app settings
-domain=$(ynh_app_setting_get "$app" domain)
-path=$(ynh_app_setting_get "$app" path)
-path=${path%/}
-dbpass=$(ynh_app_setting_get "$app" mysqlpwd)
-user_home=$(ynh_app_setting_get "$app" user_home)
+ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
 
-# Check destination directory
-DESTDIR="/var/www/$app"
-[[ ! -d $DESTDIR ]] && ynh_die \
-"The destination directory '$DESTDIR' does not exist.\
- The app is not correctly installed, you should remove it first."
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
 
-# Check app's data directory
-DATADIR="/home/yunohost.app/${app}/data"
-[[ ! -d $DATADIR ]] && ynh_die \
-"The data directory '$DATADIR' does not exist.\
- The app is not correctly installed, you should remove it first."
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	ynh_script_progression --message="Upgrading source files..." --weight=1
 
-# Upgrade dependencies
-ynh_package_install_from_equivs ../conf/${DEPS_PKG_NAME}.control \
-  || ynh_die "Unable to upgrade dependencies"
-
-# FIXME: Delete current nginx configuration to be able to check if
-# .well-known is already served. See https://dev.yunohost.org/issues/400
-nginx_conf="/etc/nginx/conf.d/${domain}.d/${app}.conf"
-sudo rm -f "$nginx_conf"
-sudo service nginx reload
-
-# Copy and set nginx configuration
-sed -i "s@#APP#@${app}@g"          ../conf/nginx.conf
-sed -i "s@#PATH#@${path}@g"        ../conf/nginx.conf
-sed -i "s@#LOCATION#@${path:-/}@g" ../conf/nginx.conf
-sed -i "s@#DESTDIR#@${DESTDIR}@g"  ../conf/nginx.conf
-# do not serve .well-known if it's already served on the domain
-if is_url_handled "https://${domain}/.well-known/caldav" ; then
-  sed -ri '/^location = \/\.well\-known\/(caldav|carddav) \{/,/\}/d' \
-      ../conf/nginx.conf
-fi
-sudo cp ../conf/nginx.conf "$nginx_conf"
-
-# Copy and set php-fpm configuration
-phpfpm_conf="/etc/php5/fpm/pool.d/${app}.conf"
-sed -i "s@#USER#@${app}@g"         ../conf/php-fpm.conf
-sed -i "s@#GROUP#@${app}@g"        ../conf/php-fpm.conf
-sed -i "s@#POOLNAME#@${app}@g"     ../conf/php-fpm.conf
-sed -i "s@#DESTDIR#@${DESTDIR}/@g" ../conf/php-fpm.conf
-sudo cp ../conf/php-fpm.conf "$phpfpm_conf"
-sudo chown root: $phpfpm_conf
-sudo chmod 644 $phpfpm_conf
-
-# Set system group in hooks
-sed -i "s@#GROUP#@${app}@g" ../hooks/post_user_create
-
-# occ helper for the current installation
-_exec_occ() {
-  exec_occ "$DESTDIR" "$app" $@
-}
-
-# Retrieve new ownCloud sources in a temporary directory
-TMPDIR=$(ynh_mkdir_tmp)
-extract_owncloud "$TMPDIR"
-
-# Copy ownCloud configuration file
-oc_conf="${DESTDIR}/config.json"
-sed -i "s@#DOMAIN#@${domain}@g" ../conf/config.json
-sed -i "s@#DATADIR#@${DATADIR}@g" ../conf/config.json
-sudo cp ../conf/config.json "${TMPDIR}/config.json"
-
-# Enable maintenance mode
-_exec_occ maintenance:mode --on
-
-# Copy config and 3rd party applications from current directory
-sudo cp -a "${DESTDIR}/config/config.php" "${TMPDIR}/config/config.php"
-for a in $(sudo ls "${DESTDIR}/apps"); do
-  [[ ! -d "${TMPDIR}/apps/$a" ]] \
-    && sudo cp -a "${DESTDIR}/apps/$a" "${TMPDIR}/apps/$a"
-done
-
-# Rename existing app directory and move new one
-sudo rm -rf "${DESTDIR}"
-sudo mv "$TMPDIR" "$DESTDIR"
-
-# Set app folders ownership
-sudo chown -R $app: "$DESTDIR" "$DATADIR"
-
-# Upgrade ownCloud (SUCCESS = 0, UP_TO_DATE = 3)
-# TODO: Restore old directory in case of failure?
-_exec_occ maintenance:mode --off
-_exec_occ upgrade \
-  || ([[ $? -eq 3 ]] || ynh_die "Unable to upgrade ownCloud")
-
-# Enable plugins and set ownCloud configuration
-_exec_occ app:enable user_ldap
-_exec_occ config:import "$oc_conf"
-sudo rm -f "$oc_conf"
-
-# Guess user_home value if empty
-if [[ -z "${user_home:-}" ]]; then
-  sudo cat "${DATADIR}/mount.json" >/dev/null 2>&1 \
-    && user_home=1 \
-    || user_home=0
-  ynh_app_setting_set "$app" user_home "$user_home"
+	# Download, check integrity, uncompress and patch the source from app.src
+	ynh_setup_source --dest_dir="$install_dir"
 fi
 
-# Enable External Storage and create local mount to home folder as needed
-if [[ ${user_home} -eq 1 ]]; then
-  _exec_occ app:enable files_external
-  _exec_occ files_external:list --output=json \
-      | grep -q '"storage":"\\\\OC\\\\Files\\\\Storage\\\\Local"' \
-    || _exec_occ files_external:create \
-        'Home' 'local' 'null::null' -c 'datadir=/home/$user'
-fi
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
-# Add dynamic logout URL to the config
-# TODO: if changes are made to this section, replace it with new one.
-_exec_occ config:system:get logout_url >/dev/null 2>&1 \
-  || sudo su -c "echo \"
-//-YunoHost-
-// set logout_url according to main domain
-\\\$main_domain = exec('cat /etc/yunohost/current_host');
-\\\$CONFIG['logout_url'] = 'https://'.\\\$main_domain.'/yunohost/sso/?action=logout';
-//-YunoHost-
-\" >> ${DESTDIR}/config/config.php" -- $app
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
 
-# Iterate over users to extend their home folder permissions - for the external
-# storage plugin usage - and create relevant ownCloud directories
-for u in $(ynh_user_list); do
-  sudo mkdir -p "${DATADIR}/${u}"
-  sudo setfacl -m g:$app:rwx "/home/$u" || true
-done
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config
 
-# Fix app ownerships & permissions
-sudo find ${DESTDIR}/ -type f -print0 | sudo xargs -0 chmod 0644
-sudo find ${DESTDIR}/ -type d -print0 | sudo xargs -0 chmod 0755
-sudo find ${DATADIR}/ -type f -print0 | sudo xargs -0 chmod 0640
-sudo find ${DATADIR}/ -type d -print0 | sudo xargs -0 chmod 0750
-sudo chmod 640 "${DESTDIR}/config/config.php"
-sudo chmod 755 /home/yunohost.app
+# Create a dedicated NGINX config
+ynh_add_nginx_config
 
-# Set SSOwat rules
-ynh_app_setting_set "$app" unprotected_uris "/"
-ynh_app_setting_set "$app" skipped_regex \
-    "$(sed 's/[\.\-]/\%&/g' <<< $domain)/%.well%-known/.*"
+#=================================================
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression --message="Updating a configuration file..." --weight=1
 
-# Reload services
-sudo service php5-fpm restart || true
-sudo service nginx reload || true
+ynh_add_config --template="some_config_file" --destination="$install_dir/some_config_file"
 
-# Add cron job
-cron_path="/etc/cron.d/$app"
-sed -i "s@#USER#@${app}@g"        ../conf/owncloud.cron
-sed -i "s@#DESTDIR#@${DESTDIR}@g" ../conf/owncloud.cron
-sudo cp ../conf/owncloud.cron "$cron_path"
-sudo chmod 644 "$cron_path"
-_exec_occ background:cron
+chmod 400 "$install_dir/some_config_file"
+chown $app:$app "$install_dir/some_config_file"
 
-# Warn about possible disabled apps
-echo "Note that if you've installed some third-parties ownCloud applications, \
-they are probably disabled and you'll have to manually activate them again." >&2
+#=================================================
+# SETUP SYSTEMD
+#=================================================
+ynh_script_progression --message="Upgrading systemd configuration..." --weight=1
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
+
+yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression --message="Starting a systemd service..." --weight=1
+
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression --message="Upgrade of $app completed" --last

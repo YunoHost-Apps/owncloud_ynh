@@ -1,0 +1,66 @@
+packaging_format = 2
+
+id = "owncloud"
+name = "ownCloud"
+description.en = "Explain in *a few (10~15) words* the purpose of the app or what it actually does (it is meant to give a rough idea to users browsing a catalog of 100+ apps)"
+description.fr = "Expliquez en *quelques* (10~15) mots l'utilité de l'app ou ce qu'elle fait (l'objectif est de donner une idée grossière pour des utilisateurs qui naviguent dans un catalogue de 100+ apps)"
+
+version = "4.0.1.~ynh1"
+
+maintainers = [""]
+
+[upstream]
+license = "Apache-2.0"
+website = "https://owncloud.com"
+demo = "https://demo.example.com"
+admindoc = "https://doc.owncloud.com/"
+code = "https://github.com/owncloud/ocis"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.password]
+    help.en = "Use the help field to add an information for the admin about this question."
+    help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
+    type = "password"
+
+[resources]
+
+        [resources.sources.main]
+        amd64.url = "https://download.owncloud.com/ocis/ocis/stable/4.0.1/ocis-4.0.1-linux-amd64"
+        amd64.sha256 = "91f21d74099f5ae24ea4686913e8c916b20736c3f6dd64b5536957af5a5e31ae"
+        i386.url = "https://download.owncloud.com/ocis/ocis/stable/4.0.1/ocis-4.0.1-linux-386"
+        i386.sha256 = "68f876f2f094e1c2f0056a39910c0a94751b4138d211ffeae11b56e53ff37998"
+        arm64.url = "https://download.owncloud.com/ocis/ocis/stable/4.0.1/ocis-4.0.1-linux-arm64"
+        arm64.sha256 = "0003cb8d81c8468397229e917ffdd25476d1355eb1258b08e855473880398da9"
+        armhf.url = "https://download.owncloud.com/ocis/ocis/stable/4.0.1/ocis-4.0.1-linux-arm"
+        armhf.sha256 = "d6cd4c21356f0ebaaa8bfda0e2b3bd481402248af4647c901141f85febc16106"
+        in_subdir = false
+        rename = "owncloud"
+
+    [resources.ports]
+    main.default = 9200
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.data_dir]
+
+    [resources.permissions]
+    main.url = "/"
