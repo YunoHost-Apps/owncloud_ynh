@@ -12,7 +12,7 @@ maintainers = [""]
 [upstream]
 license = "Apache-2.0"
 website = "https://owncloud.com"
-admindoc = "https://doc.owncloud.com/"
+admindoc = "https://doc.owncloud.com/ocis/next/"
 code = "https://github.com/owncloud/ocis"
 
 [integration]
