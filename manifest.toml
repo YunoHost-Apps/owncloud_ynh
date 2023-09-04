@@ -18,7 +18,7 @@ code = "https://github.com/owncloud/ocis"
 [integration]
 yunohost = ">= 11.2"
 architectures = ["amd64", "arm64", "armhf", "i386"]
-multi_instance = true
+multi_instance = false
 ldap = false
 sso = false
 disk = "50M"
