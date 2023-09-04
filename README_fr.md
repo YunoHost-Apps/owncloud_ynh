@@ -31,7 +31,7 @@ ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will b
 ## Documentations et ressources
 
 * Site officiel de l’app : <https://owncloud.com>
-* Documentation officielle de l’admin : <https://doc.owncloud.com/>
+* Documentation officielle de l’admin : <https://doc.owncloud.com/ocis/next/>
 * Dépôt de code officiel de l’app : <https://github.com/owncloud/ocis>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_owncloud>
 * Signaler un bug : <https://github.com/YunoHost-Apps/owncloud_ynh/issues>
