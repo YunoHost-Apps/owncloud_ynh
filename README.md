@@ -31,7 +31,7 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 
 ## Screenshots
 
-![Screenshot of ownCloud](./doc/screenshots/example.jpg)
+![Screenshot of ownCloud](./doc/screenshots/screenshot.png)
 
 ## :red_circle: Antifeatures
 

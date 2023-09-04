@@ -31,7 +31,7 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 
 ## Captures d’écran
 
-![Capture d’écran de ownCloud](./doc/screenshots/example.jpg)
+![Capture d’écran de ownCloud](./doc/screenshots/screenshot.png)
 
 ## :red_circle: Fonctions indésirables
 
