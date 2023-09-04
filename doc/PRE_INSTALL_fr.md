@@ -1,0 +1,1 @@
+Attention, ce package est uniquement destiné à tester ownCloud Infinite Scale. Il ne doit pas être utilisé en production.
