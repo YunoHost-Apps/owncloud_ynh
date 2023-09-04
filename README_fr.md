@@ -16,7 +16,8 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will be the foundation of your data management platform.
+ownCloud Infinite Scale (oCIS) est la nouvelle plateforme de synchronisation et de partage de fichiers qui constituera la base de votre plateforme de gestion de données.
+
 
 **Version incluse :** 4.0.1~ynh1
 
