@@ -14,6 +14,7 @@ license = "Apache-2.0"
 website = "https://owncloud.com"
 admindoc = "https://doc.owncloud.com/ocis/next/"
 code = "https://github.com/owncloud/ocis"
+cpe = "cpe:2.3:a:owncloud:owncloud"
 
 [integration]
 yunohost = ">= 11.2"
