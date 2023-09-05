@@ -20,7 +20,7 @@ ynh_setup_source --dest_dir="$install_dir"
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-chmod +x $install_dir/owncloud
+chmod +x $install_dir/ocis
 
 #=================================================
 # NGINX CONFIGURATION
@@ -50,7 +50,7 @@ yunohost service add $app --description="File sharing platform" --log="/var/log/
 #=================================================
 ynh_script_progression --message="Installing $app..." --weight=3
 
-(cd "$install_dir" && ./owncloud init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir/.ocis/config) 
+(cd "$install_dir" && ./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir/.ocis/config) 
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
