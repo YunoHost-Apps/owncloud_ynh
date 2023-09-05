@@ -52,7 +52,7 @@ chown $app:$app "/etc/ocis/ocis.env"
 #=================================================
 ynh_script_progression --message="Installing $app..." --weight=3
 
-(cd "$install_dir" && ./ocis init --insecure=true --admin-password $password --config-path "/etc/ocis/.ocis/ocis.yaml") 
+(cd "$install_dir" && ./ocis init --insecure=true --admin-password $password --config-path "/etc/ocis/.ocis/config") 
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
