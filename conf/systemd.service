@@ -1,5 +1,5 @@
 [Unit]
-Description=Owncloud server
+Description=ownCloud Infinite Scale server
 
 [Service]
 Type=simple
@@ -7,7 +7,7 @@ User=__APP__
 Group=__APP__
 Environment=PROXY_HTTP_ADDR=127.0.0.1:__PORT__
 Environment=OCIS_URL=https://__DOMAIN__
-ExecStart=__INSTALL_DIR__/owncloud server
+ExecStart=__INSTALL_DIR__/ocis server
 Restart=always
 
 # Sandboxing options to harden security

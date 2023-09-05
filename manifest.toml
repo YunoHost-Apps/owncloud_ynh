@@ -48,7 +48,7 @@ ram.runtime = "50M"
         armhf.url = "https://download.owncloud.com/ocis/ocis/stable/4.0.1/ocis-4.0.1-linux-arm"
         armhf.sha256 = "d6cd4c21356f0ebaaa8bfda0e2b3bd481402248af4647c901141f85febc16106"
         in_subdir = false
-        rename = "owncloud"
+        rename = "ocis"
 
     [resources.ports]
     main.default = 9200
