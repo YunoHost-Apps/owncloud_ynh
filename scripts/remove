@@ -28,6 +28,8 @@ ynh_remove_systemd_config
 # Remove the dedicated NGINX config
 ynh_remove_nginx_config
 
+ynh_secure_remove --file="/etc/ocis"
+
 #=================================================
 # END OF SCRIPT
 #=================================================

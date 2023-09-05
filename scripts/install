@@ -16,10 +16,12 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
+mkdir -p /etc/ocis
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+chown -R $app:$app "/etc/ocis"
 chmod +x $install_dir/ocis
 
 #=================================================
@@ -38,19 +40,19 @@ yunohost service add $app --description="File sharing platform" --log="/var/log/
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-#ynh_script_progression --message="Adding a configuration file..." --weight=1
+ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-#ynh_add_config --template="../conf/.env" --destination="$install_dir/.env"
+ynh_add_config --template="../conf/.env" --destination="/etc/ocis/ocis.env"
 
-#chmod 600 "$install_dir/.env"
-#chown $app:$app "$install_dir/.env"
+chmod 600 "/etc/ocis/ocis.env"
+chown $app:$app "/etc/ocis/ocis.env"
 
 #=================================================
 # INSTALL OWNCLOUD
 #=================================================
 ynh_script_progression --message="Installing $app..." --weight=3
 
-(cd "$install_dir" && ./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir/.ocis/config) 
+(cd "$install_dir" && ./ocis init --insecure=true --force-overwrite=true --admin-password $password --config-path "/etc/ocis") 
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"

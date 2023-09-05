@@ -43,6 +43,8 @@ systemctl enable $app.service --quiet
 
 yunohost service add $app --description="File sharing platform" --log="/var/log/$app/$app.log"
 
+ynh_restore_file --origin_path="/etc/ocis/"
+
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
