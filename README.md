@@ -24,10 +24,6 @@ ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will b
 
 ![Screenshot of ownCloud](./doc/screenshots/screenshot.png)
 
-## :red_circle: Antifeatures
-
-- **Package not maintained**: This YunoHost package is not maintained and needs adoption.
-
 ## Documentation and resources
 
 * Official app website: <https://owncloud.com>
