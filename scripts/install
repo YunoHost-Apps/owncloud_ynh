@@ -50,7 +50,7 @@ chown $app:$app "$install_dir/ocis.env"
 ynh_script_progression --message="Installing $app..." --weight=3
 
 pushd "$install_dir"
-	./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir/ocis.env
+	./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir
 popd
 
 chmod 750 "$install_dir"
