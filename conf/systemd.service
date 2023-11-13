@@ -7,6 +7,7 @@ User=__APP__
 Group=__APP__
 Environment=OCIS_BASE_DATA_PATH=__DATA_DIR__
 Environment=PROXY_HTTP_ADDR=127.0.0.1:__PORT__
+Environment=IDM_ADMIN_PASSWORD: __ADMIN__
 Environment=OCIS_URL=https://__DOMAIN__
 ExecStart=__INSTALL_DIR__/ocis server
 Restart=always
