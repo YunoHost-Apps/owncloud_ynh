@@ -7,7 +7,7 @@ description.fr = "Stockage en ligne, plateforme de partage de fichiers et divers
 
 version = "4.0.1~ynh1"
 
-maintainers = [""]
+maintainers = ["eric_G"]
 
 [upstream]
 license = "Apache-2.0"
