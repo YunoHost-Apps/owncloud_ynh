@@ -17,15 +17,14 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
 
-chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 chmod +x $install_dir/ocis
 
 #=================================================
-# NGINX CONFIGURATION
+# SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring NGINX web server..." --weight=1
+ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
@@ -50,7 +49,9 @@ yunohost service add $app --description="File sharing platform" --log="/var/log/
 #=================================================
 ynh_script_progression --message="Installing $app..." --weight=3
 
-(cd "$install_dir" && ./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir/.ocis/config) 
+pushd "$install_dir"
+	./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir/.ocis/config
+popd
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
