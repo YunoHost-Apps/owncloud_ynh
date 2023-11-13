@@ -44,9 +44,6 @@ ram.runtime = "50M"
     choices = ["de", "fr", "en"]
     default = "fr"
 
-    [install.admin]
-    type = "user"
-
     [install.password]
     type = "password"
 
