@@ -2,8 +2,8 @@ packaging_format = 2
 
 id = "owncloud"
 name = "ownCloud"
-description.en = "Online storage, file sharing platform and various other applications"
-description.fr = "Stockage en ligne, plateforme de partage de fichiers et diverses autres applications"
+description.en = "Online storage, file sharing platform"
+description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
 version = "5.0.0~ynh1"
 
