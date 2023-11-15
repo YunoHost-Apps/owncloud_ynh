@@ -1,5 +1,5 @@
 [Unit]
-Description=ownCloud Infinite Scale server
+Description=ownCloud: Infinite Scale server
 
 [Service]
 Type=simple
