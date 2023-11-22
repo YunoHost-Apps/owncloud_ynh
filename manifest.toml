@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "5.0.0~ynh2"
+version = "5.0.0~ynh3"
 
 maintainers = ["eric_G"]
 
@@ -50,14 +50,14 @@ ram.runtime = "50M"
 [resources]
 
         [resources.sources.main]
-        amd64.url = "https://download.owncloud.com/ocis/ocis/testing/5.0.0-alpha.2/ocis-5.0.0-alpha.2-linux-amd64"
-        amd64.sha256 = "704a1c210ad98ddc8131b54f5e7cf9ee21917e82f2fa0828a096825023002965"
-        arm64.url = "https://download.owncloud.com/ocis/ocis/testing/5.0.0-alpha.2/ocis-5.0.0-alpha.2-linux-arm64"
-        arm64.sha256 = "0d32c5fd7e3e7c15c248690e9da9f606b64a9ccb446dd92d84f6b821b2c1f579"
-        armhf.url = "https://download.owncloud.com/ocis/ocis/testing/5.0.0-alpha.2/ocis-5.0.0-alpha.2-linux-arm"
-        armhf.sha256 = "45270ba7c2325032aacd99a91c7df23a9ffb3cb30ddc9ca56798d24ea95427c4"
-        i386.url = "https://download.owncloud.com/ocis/ocis/testing/5.0.0-alpha.2/ocis-5.0.0-alpha.2-linux-386"
-        i386.sha256 = "6d997bdef3c9f38cd7dd55025d8436df641db3e19316db66d514af52ce0effe9"
+        amd64.url = "https://download.owncloud.com/ocis/ocis/testing/5.0.0-alpha.3/ocis-5.0.0-alpha.3-linux-amd64"
+        amd64.sha256 = "e8712652b74d44e0c34ab92c389ba4751ffaf7e29a0465f2c3bf074a22937dd9"
+        arm64.url = "https://download.owncloud.com/ocis/ocis/testing/5.0.0-alpha.3/ocis-5.0.0-alpha.3-linux-arm64"
+        arm64.sha256 = "4d891e35ef68a65460280911e81139b07ec03b98bcf355a70f6cdcf539ff63e5"
+        armhf.url = "https://download.owncloud.com/ocis/ocis/testing/5.0.0-alpha.3/ocis-5.0.0-alpha.3-linux-arm"
+        armhf.sha256 = "840f752a1c07d0742e7d6898524740ca7fc6e44fa212c6ce810b6cd0f63f6bd7"
+        i386.url = "https://download.owncloud.com/ocis/ocis/testing/5.0.0-alpha.3/ocis-5.0.0-alpha.3-linux-386"
+        i386.sha256 = "71a274c6fdcbfe072daf5188807ed4d0cd4520f31aee707c5f5fa933e1c3e78a"
         in_subdir = false
         rename = "ocis"
 
