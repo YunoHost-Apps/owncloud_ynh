@@ -65,7 +65,8 @@ ram.runtime = "50M"
     main.default = 9200
 
     [resources.system_user]
-
+    allow_email = true
+    
     [resources.install_dir]
 
     [resources.data_dir]
