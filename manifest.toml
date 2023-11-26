@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "5.0.0~ynh3"
+version = "5.0.0~ynh4"
 
 maintainers = ["eric_G"]
 
@@ -26,7 +26,7 @@ ldap = false
 sso = false
 
 disk = "50M"
-ram.build = "300M"
+ram.build = "800M"
 ram.runtime = "50M"
 
 [install]
@@ -41,7 +41,7 @@ ram.runtime = "50M"
     ask.en = "Choose the application language"
     ask.fr = "Choisissez la langue de l'application"
     type = "select"
-    choices = ["de", "fr", "en"]
+    choices = ["cs", "de", "en", "es", "fr", "gl", "it"]
     default = "fr"
 
     [install.password]
@@ -61,14 +61,13 @@ ram.runtime = "50M"
         in_subdir = false
         rename = "ocis"
 
-    [resources.ports]
-    main.default = 9200
-
     [resources.system_user]
 
     [resources.install_dir]
 
     [resources.data_dir]
+
+    [resources.ports]
 
     [resources.permissions]
     main.url = "/"
