@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "5.0.0~ynh6"
+version = "5.0.0~ynh7"
 
 maintainers = ["eric_G"]
 
@@ -50,14 +50,14 @@ ram.runtime = "50M"
 [resources]
 
         [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-alpha.5/ocis-5.0.0-alpha.5-linux-amd64"
-        amd64.sha256 = "0fc50de011e9f52241029b6d72e2664c1c296e06f3323e4fa16950d3ce427d03"
-        arm64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-alpha.5/ocis-5.0.0-alpha.5-linux-arm64"
-        arm64.sha256 = "85df0a2e75a00b79c9559c20831e5139e47d6c129e5226d8180fe38310d69a64"
-        armhf.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-alpha.5/ocis-5.0.0-alpha.5-linux-arm"
-        armhf.sha256 = "a8fec6ea145706ce72fdf823b0246e9fe7b8a63e0de2df5b17360a46ca60842a"
-        i386.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-alpha.5/ocis-5.0.0-alpha.5-linux-386"
-        i386.sha256 = "b5d72c8d19561b952a7e0efc0c480de71501fe46026470766e8640859535c239"
+        amd64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-alpha.6/ocis-5.0.0-alpha.6-linux-amd64"
+        amd64.sha256 = "4e47e3eab2f1b5c0d7366eaaeede593535f4a93518e4e7b90e0da883229bd867"
+        arm64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-alpha.6/ocis-5.0.0-alpha.6-linux-arm64"
+        arm64.sha256 = "f8a2f99e5113a245310fec4bf5cb4d180b63180d62cffcafbeb97cb3f8d17ea8"
+        armhf.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-alpha.6/ocis-5.0.0-alpha.6-linux-arm"
+        armhf.sha256 = "771b23a7e49efde713f49ea2e87282a00f4d74ddae655cd12226994170a70295"
+        i386.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-alpha.6/ocis-5.0.0-alpha.6-linux-386"
+        i386.sha256 = "11aa3f067d390d78d24c169684adcc3a55d6d8720685a91db1db47550cd2dd63"
         in_subdir = false
         rename = "ocis"
 
