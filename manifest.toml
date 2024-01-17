@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "5.0.0~ynh8"
+version = "5.0.0~ynh9"
 
 maintainers = ["eric_G"]
 
@@ -25,7 +25,7 @@ ldap = false
 
 sso = false
 
-disk = "50M"
+disk = "100M"
 ram.build = "800M"
 ram.runtime = "50M"
 
@@ -50,14 +50,14 @@ ram.runtime = "50M"
 [resources]
 
         [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-beta.2/ocis-5.0.0-beta.2-linux-amd64"
-        amd64.sha256 = "f6a7f78081d6101b8faebceb6b6c6ce43e7ab91fa6a411d473a55b76bb3bfcd0"
-        arm64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-beta.2/ocis-5.0.0-beta.2-linux-arm64"
-        arm64.sha256 = "cc9ee633e66ca0fc7a15fa8a41c7ab59670e128344003aa949419bcf8b7b5bb5"
-        armhf.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-beta.2/ocis-5.0.0-beta.2-linux-arm"
-        armhf.sha256 = "a0dc7f5e627f7769ed6fcc69d8f89f608a93bada6f83de0cdadb2a036a33b597"
-        i386.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-beta.2/ocis-5.0.0-beta.2-linux-386"
-        i386.sha256 = "c45d22427b7bd8cef77a9eefc05fd14fcf798b5ad31ab70fa5d2f4f7a497f9c2"
+        amd64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-rc.2/ocis-5.0.0-rc.2-linux-amd64"
+        amd64.sha256 = "4e7fcb5818c5f16be29bab146f8707e3f97987ee06861bee7a3b08edfa909c1f"
+        arm64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-rc.2/ocis-5.0.0-rc.2-linux-arm64"
+        arm64.sha256 = "63554ee68443697df67df5f30f66baa04996d318fe7824d33ec878bb6a11390e"
+        armhf.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-rc.2/ocis-5.0.0-rc.2-linux-arm"
+        armhf.sha256 = "f96ce1b0d0d909bcf4db108f0b04864565c6c8fc4923128bec9b263def7292b9"
+        i386.url = "https://github.com/owncloud/ocis/releases/download/v5.0.0-rc.2/ocis-5.0.0-rc.2-linux-386"
+        i386.sha256 = "8060dc146bf64a8c502784158b328dbcd7e6847653574a70fe9af1e271c8876c"
         in_subdir = false
         rename = "ocis"
 
