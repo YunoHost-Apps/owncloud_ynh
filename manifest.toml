@@ -61,6 +61,12 @@ ram.runtime = "50M"
         in_subdir = false
         rename = "ocis"
 
+        # commented for now, waiting for stable owncloud v5
+        # autoupdate.strategy = "latest_github_release"
+        autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
+        autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
+        autoupdate.asset.i386 = "^ocis-.*-linux-386$"
+
     [resources.system_user]
 
     [resources.install_dir]
