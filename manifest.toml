@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "5.0.1~ynh1"
+version = "5.0.3~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -50,18 +50,17 @@ ram.runtime = "50M"
 [resources]
 
         [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.1/ocis-5.0.1-linux-amd64"
-        amd64.sha256 = "173d1e7b42eed022f7c496eca75082974aec37fa78f0174e8fca1539fd104a1e"
-        arm64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.1/ocis-5.0.1-linux-arm64"
-        arm64.sha256 = "cc7ee7262e80d42f80707737ef9bda1f554ec48169951e47a7903398036e88e0"
-        armhf.url = "https://github.com/owncloud/ocis/releases/download/v5.0.1/ocis-5.0.1-linux-arm"
-        armhf.sha256 = "4896e080296fe0d007d1601b56af4c4518bd21a6ace7f6d1a6bf91c113177423"
-        i386.url = "https://github.com/owncloud/ocis/releases/download/v5.0.1/ocis-5.0.1-linux-386"
-        i386.sha256 = "aabc59d4a8326ffd82f11c2f83aa87d9dd56e45ec54f413c71e7c06857d46081"
+        amd64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.3/ocis-5.0.3-linux-amd64"
+        amd64.sha256 = "6257c2cc95ac52361c3f49968e45951fe7c28d3a8d1a27f523441389326b3cc1"
+        arm64.url = "https://github.com/owncloud/ocis/releases/download/v5.0.3/ocis-5.0.3-linux-arm64"
+        arm64.sha256 = "84651ac080ae4866555f8bda084f4d19dd88f0bafea6b0cbbe79b4e6a337796e"
+        armhf.url = "https://github.com/owncloud/ocis/releases/download/v5.0.3/ocis-5.0.3-linux-arm"
+        armhf.sha256 = "9d01a3754a68a56811291ce9738af973c2dfaae6caf256ebd4ef44a84241915a"
+        i386.url = "https://github.com/owncloud/ocis/releases/download/v5.0.3/ocis-5.0.3-linux-386"
+        i386.sha256 = "d9b9c7f36bfea8f8ebee004435dadabbf6b1b0656eb6f3541a8e181212baecc1"
         in_subdir = false
         rename = "ocis"
 
-        # commented for now, waiting for stable owncloud v5
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
         autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
