@@ -18,7 +18,7 @@ It shall NOT be edited by hand.
 
 ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will be the foundation of your data management platform.
 
-**Shipped version:** 5.0.1~ynh1
+**Shipped version:** 5.0.3~ynh1
 
 ## Screenshots
 
