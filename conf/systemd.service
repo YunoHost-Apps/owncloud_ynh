@@ -5,7 +5,7 @@ Description=ownCloud: Infinite Scale server
 Type=simple
 User=__APP__
 Group=__APP__
-EnvironmentFile=__INSTALL_DIR__/ocis.env
+EnvironmentFile=__DATA_DIR__/config/ocis.env
 ExecStart=__INSTALL_DIR__/ocis server
 Restart=always
 
