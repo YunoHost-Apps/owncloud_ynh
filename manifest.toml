@@ -71,13 +71,13 @@ ram.runtime = "50M"
     [resources.install_dir]
 
     [resources.data_dir]
+    subdirs = ["config"]
 
     [resources.ports]
 
     [resources.permissions]
     main.url = "/"
     main.auth_header = false
-
     api.url = "/api"
     api.auth_header = false
     api.show_tile = false

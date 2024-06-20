@@ -21,12 +21,21 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=1
 ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+if [[ -f "$install_dir/ocis.yaml" ]]; then
+    mv "$install_dir/ocis.yaml" "$data_dir/config/ocis.yaml"
+fi
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Upgrading source files..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep="ocis.env ocis.yaml"
+ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
@@ -48,12 +57,12 @@ yunohost service add $app --description="File sharing platform" --log="/var/log/
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-#ynh_script_progression --message="Adding a configuration file..." --weight=1
+ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-#ynh_add_config --template=".env" --destination="$install_dir/ocis.env"
+ynh_add_config --template=".env" --destination="$install_dir/ocis.env"
 
-#chmod 400 "$install_dir/ocis.env"
-#chown $app:$app "$install_dir/ocis.env"
+chmod 400 "$install_dir/ocis.env"
+chown $app:$app "$install_dir/ocis.env"
 
 #=================================================
 # START SYSTEMD SERVICE
