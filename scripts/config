@@ -1,18 +1,14 @@
 #!/bin/bash
-# In simple cases, you don't need a config script. 
+# In simple cases, you don't need a config script.
 
-# With a simple config_panel.toml, you can write in the app settings, in the 
+# With a simple config_panel.toml, you can write in the app settings, in the
+
 # upstream config file or replace complete files (logo ...) and restart services.
 
-# The config scripts allows you to go further, to handle specific cases 
+# The config scripts allows you to go further, to handle specific cases
+
 # (validation of several interdependent fields, specific getter/setter for a value,
 # display dynamic informations or choices, pre-loading of config type .cube... ).
-
-#=================================================
-# GENERIC STARTING
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
 
 source /usr/share/yunohost/helpers
 
@@ -62,7 +58,6 @@ get__prices() {
     fi
 }
 
-
 #=================================================
 # SPECIFIC VALIDATORS FOR TOML SHORT KEYS
 #=================================================
@@ -89,14 +84,12 @@ set__prices() {
 
         echo "DONATION['$frequency']['$currency'] = '$price_id'" >> "$final_path/settings.py"
     done
-    
+
     #---------------------------------------------
     # IMPORTANT: to be able to upgrade properly, you have to saved the value in settings too
     #---------------------------------------------
     ynh_app_setting_set $app prices $prices
 }
 
-#=================================================
-# GENERIC FINALIZATION
 #=================================================
 ynh_app_config_run $1
