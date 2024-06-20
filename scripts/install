@@ -9,6 +9,8 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+timezone=$(cat /etc/timezone)
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
@@ -39,10 +41,10 @@ yunohost service add $app --description="File sharing platform" --log="/var/log/
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_add_config --template=".env" --destination="$install_dir/ocis.env"
+ynh_add_config --template=".env" --destination="$data_dir/config/ocis.env"
 
-chmod 400 "$install_dir/ocis.env"
-chown $app:$app "$install_dir/ocis.env"
+chmod 400 "$data_dir/config/ocis.env"
+chown $app:$app "$data_dir/config/ocis.env"
 
 #=================================================
 # INSTALL OWNCLOUD
@@ -50,12 +52,13 @@ chown $app:$app "$install_dir/ocis.env"
 ynh_script_progression --message="Installing $app..." --weight=3
 
 pushd "$install_dir"
-	./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$install_dir
+	./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$data_dir/config/
 popd
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+chown $app:$app "$data_dir/config/ocis.yaml"
 
 #=================================================
 # START SYSTEMD SERVICE
