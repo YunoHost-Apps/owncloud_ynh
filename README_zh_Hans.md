@@ -3,8 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 ownCloud
-
+# YunoHost 上的 ownCloud
 
 [![集成程度](https://dash.yunohost.org/integration/owncloud.svg)](https://dash.yunohost.org/appci/app/owncloud) ![工作状态](https://ci-apps.yunohost.org/ci/badges/owncloud.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/owncloud.maintain.svg)
 
@@ -20,7 +19,6 @@
 ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will be the foundation of your data management platform.
 
 **分发版本：** 6.0.0~ynh2
-
 
 ## 截图
 
