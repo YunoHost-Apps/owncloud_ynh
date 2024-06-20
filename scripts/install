@@ -43,8 +43,8 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 ynh_add_config --template=".env" --destination="$data_dir/config/ocis.env"
 
-chmod 400 "$data_dir/ocis.env"
-chown $app:$app "$data_dir/ocis.env"
+chmod 400 "$data_dir/config/ocis.env"
+chown $app:$app "$data_dir/config/ocis.env"
 
 #=================================================
 # INSTALL OWNCLOUD
