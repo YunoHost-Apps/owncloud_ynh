@@ -58,6 +58,7 @@ popd
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+chown $app:$app "$data_dir/config/ocis.yaml"
 
 #=================================================
 # START SYSTEMD SERVICE
