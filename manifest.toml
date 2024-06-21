@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "6.0.0~ynh2"
+version = "6.0.0~ynh3"
 
 maintainers = ["eric_G"]
 
@@ -17,7 +17,8 @@ code = "https://github.com/owncloud/ocis"
 cpe = "cpe:2.3:a:owncloud:owncloud"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.15"
+helpers_version = "2.1"
 architectures = ["amd64", "arm64", "armhf", "i386"]
 multi_instance = false
 
