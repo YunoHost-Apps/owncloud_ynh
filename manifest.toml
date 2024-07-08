@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "6.0.0~ynh3"
+version = "6.1.0~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -17,7 +17,7 @@ code = "https://github.com/owncloud/ocis"
 cpe = "cpe:2.3:a:owncloud:owncloud"
 
 [integration]
-yunohost = ">= 11.2.15"
+yunohost = ">= 11.2.20"
 helpers_version = "2.1"
 architectures = ["amd64", "arm64", "armhf", "i386"]
 multi_instance = false
@@ -51,14 +51,14 @@ ram.runtime = "50M"
 [resources]
 
         [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v6.0.0/ocis-6.0.0-linux-amd64"
-        amd64.sha256 = "805e512046d6ac3f75da44805e2560a2f64dddb18ebd00d90d891aaf66b3a414"
-        arm64.url = "https://github.com/owncloud/ocis/releases/download/v6.0.0/ocis-6.0.0-linux-arm64"
-        arm64.sha256 = "e753278d479aeb8af18278fa3f53e5de6fd54309c307afffb8f4f3f15608f778"
-        armhf.url = "https://github.com/owncloud/ocis/releases/download/v6.0.0/ocis-6.0.0-linux-arm"
-        armhf.sha256 = "e55aa0706067f7256a7c3d7828fb69c0178d7b11ebba51c044e163e5f92de7b9"
-        i386.url = "https://github.com/owncloud/ocis/releases/download/v6.0.0/ocis-6.0.0-linux-386"
-        i386.sha256 = "c0fe4e6c95611e789f3e11d55afb8a6755b5b129448dc6bf312c9d6236fd093a"
+        amd64.url = "https://github.com/owncloud/ocis/releases/download/v6.1.0/ocis-6.1.0-linux-amd64"
+        amd64.sha256 = "3bfd3c2a3e0efd4168998f1c9a9ce7d0075a4b5825e90bd3a1e1e513f5bd958c"
+        arm64.url = "https://github.com/owncloud/ocis/releases/download/v6.1.0/ocis-6.1.0-linux-arm64"
+        arm64.sha256 = "238ec823b14d10f6db8c999962e88579c1c4b98241f68a9fad52f60f0d983a3d"
+        armhf.url = "https://github.com/owncloud/ocis/releases/download/v6.1.0/ocis-6.1.0-linux-arm"
+        armhf.sha256 = "de6fcb0581fa611522693157ea99317e08e38b986b9e7cad67c11e56cff82dae"
+        i386.url = "https://github.com/owncloud/ocis/releases/download/v6.1.0/ocis-6.1.0-linux-386"
+        i386.sha256 = "a6d29436d57c27d9780ebdaf2249bdef3a9943d493964eae97528c3615fc8df1"
         in_subdir = false
         rename = "ocis"
 
