@@ -21,11 +21,8 @@ yunohost = ">= 11.2.20"
 helpers_version = "2.1"
 architectures = ["amd64", "arm64", "armhf", "i386"]
 multi_instance = false
-
 ldap = false
-
 sso = false
-
 disk = "100M"
 ram.build = "800M"
 ram.runtime = "50M"
