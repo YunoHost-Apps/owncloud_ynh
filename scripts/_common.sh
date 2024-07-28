@@ -3,5 +3,5 @@
 #=================================================
 # COMMON VARIABLES AND CUSTOM HELPERS AND CUSTOM HELPERS
 #=================================================
-# PHP APP SPECIFIC
-#=================================================
+
+timezone=$(cat /etc/timezone)
