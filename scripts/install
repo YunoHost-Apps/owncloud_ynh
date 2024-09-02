@@ -39,7 +39,7 @@ pushd "$install_dir"
 	./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$data_dir/config/
 popd
 
-hown $app:$app "$data_dir/config/ocis.yaml"
+chown $app:$app "$data_dir/config/ocis.yaml"
 
 #=================================================
 # START SYSTEMD SERVICE
