@@ -44,7 +44,7 @@ yunohost service add $app --description="File sharing platform" --log="/var/log/
 #=================================================
 ynh_script_progression "Adding $app's configuration..."
 
-ynh_config_add --template=".env" --destination="$install_dir/ocis.env"
+ynh_config_add --template=".env" --destination="$data_dir/ocis.env"
 
 #=================================================
 # START SYSTEMD SERVICE
