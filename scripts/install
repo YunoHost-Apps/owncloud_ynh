@@ -10,8 +10,6 @@ ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
 
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
 chmod +x $install_dir/ocis
 
 #=================================================
@@ -32,9 +30,6 @@ ynh_script_progression "Adding $app's configuration..."
 
 ynh_config_add --template=".env" --destination="$data_dir/config/ocis.env"
 
-chmod 400 "$data_dir/config/ocis.env"
-chown $app:$app "$data_dir/config/ocis.env"
-
 #=================================================
 # INSTALL OWNCLOUD
 #=================================================
@@ -44,9 +39,7 @@ pushd "$install_dir"
 	./ocis init --insecure=true --force-overwrite=true --admin-password=$password --config-path=$data_dir/config/
 popd
 
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+chmod 400 "$data_dir/config/ocis.yaml"
 chown $app:$app "$data_dir/config/ocis.yaml"
 
 #=================================================
