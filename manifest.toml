@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "6.3.0~ynh3"
+version = "6.4.0~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -48,14 +48,14 @@ ram.runtime = "50M"
 [resources]
 
         [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v6.3.0/ocis-6.3.0-linux-amd64"
-        amd64.sha256 = "1479fa2b39a03a7c7ccaaae5094ef64f950bdeb049dba5672586cd3b4da12678"
-        arm64.url = "https://github.com/owncloud/ocis/releases/download/v6.3.0/ocis-6.3.0-linux-arm64"
-        arm64.sha256 = "c666b8fedefcc5584b68973b7f7cce7d1b0faf465e41707ab4acd992cf255f14"
-        armhf.url = "https://github.com/owncloud/ocis/releases/download/v6.1.0/ocis-6.1.0-linux-arm"
-        armhf.sha256 = "de6fcb0581fa611522693157ea99317e08e38b986b9e7cad67c11e56cff82dae"
-        i386.url = "https://github.com/owncloud/ocis/releases/download/v6.3.0/ocis-6.3.0-linux-386"
-        i386.sha256 = "9d3920bfdf11b23efed11b22c9601d5fc1be7764283e9dfa16602e9a91ea3526"
+        amd64.url = "https://github.com/owncloud/ocis/releases/download/v6.4.0/ocis-6.4.0-linux-amd64"
+        amd64.sha256 = "68d60bf2861d3dbfe0b227b77323245b353c3c27fd422a40888425ac17afaf8e"
+        arm64.url = "https://github.com/owncloud/ocis/releases/download/v6.4.0/ocis-6.4.0-linux-arm64"
+        arm64.sha256 = "4404336a86d4d0cdbac4d8d5c2c7a9298c9c643f4dbb708c12f5f4046115a712"
+        armhf.url = "https://github.com/owncloud/ocis/releases/download/v6.4.0/ocis-6.4.0-linux-arm"
+        armhf.sha256 = "bcfe58c3485128acd42dbaa2ca03ecd112becb4c9e8d4da0bf20bbaeda266f28"
+        i386.url = "https://github.com/owncloud/ocis/releases/download/v6.4.0/ocis-6.4.0-linux-386"
+        i386.sha256 = "4b57db6457d7404f8b43670a53d5c48c903229bba8b0f10ec2b262b8fc76f9c0"
         in_subdir = false
         rename = "ocis"
 
@@ -67,7 +67,8 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
-
+    group = "www-data:r-x"
+    
     [resources.data_dir]
     subdirs = ["config"]
 
