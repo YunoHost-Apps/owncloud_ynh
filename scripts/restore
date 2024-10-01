@@ -10,9 +10,6 @@ ynh_script_progression "Restoring the app main directory..."
 
 ynh_restore "$install_dir"
 
-chown -R "$app:www-data" "$install_dir"
-chmod +x $install_dir/ocis
-
 #=================================================
 # RESTORE THE DATA DIRECTORY
 #=================================================
@@ -20,14 +17,8 @@ ynh_script_progression "Restoring the data directory..."
 
 ynh_restore "$data_dir"
 
-chown -R $app:www-data "$data_dir"
-chmod 400 "$data_dir/config/ocis.yaml"
-chown $app:$app "$data_dir/config/ocis.yaml"
-
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
-#=================================================
-# RESTORE THE PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression "Restoring system configurations related to $app..."
 

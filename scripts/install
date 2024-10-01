@@ -47,7 +47,6 @@ chown $app:$app "$data_dir/config/ocis.yaml"
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-# Start a systemd service
 ynh_systemctl  --action="start" --log_path="systemd"
 
 #=================================================
