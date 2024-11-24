@@ -23,6 +23,8 @@ ownCloud Infinite Scale (oCIS) est la nouvelle plateforme de synchronisation et 
 
 **Version incluse :** 7.0.0~ynh1
 
+**Démo :** <https://ocis.owncloud.com/>
+
 ## Captures d’écran
 
 ![Capture d’écran de ownCloud](./doc/screenshots/screenshot.png)
