@@ -5,7 +5,9 @@ Il NE doit PAS être modifié à la main.
 
 # ownCloud pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/owncloud.svg)](https://ci-apps.yunohost.org/ci/apps/owncloud/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/owncloud.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/owncloud.maintain.svg)
+[![Niveau d’intégration](https://apps.yunohost.org/badge/integration/owncloud)](https://ci-apps.yunohost.org/ci/apps/owncloud/)
+![Statut du fonctionnement](https://apps.yunohost.org/badge/state/owncloud)
+![Statut de maintenance](https://apps.yunohost.org/badge/maintained/owncloud)
 
 [![Installer ownCloud avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=owncloud)
 
@@ -19,7 +21,9 @@ Il NE doit PAS être modifié à la main.
 ownCloud Infinite Scale (oCIS) est la nouvelle plateforme de synchronisation et de partage de fichiers qui constituera la base de votre plateforme de gestion de données.
 
 
-**Version incluse :** 6.6.1~ynh1
+**Version incluse :** 7.0.0~ynh1
+
+**Démo :** <https://ocis.owncloud.com/>
 
 ## Captures d’écran
 
