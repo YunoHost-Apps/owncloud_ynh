@@ -5,7 +5,9 @@
 
 # ownCloud для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/owncloud.svg)](https://ci-apps.yunohost.org/ci/apps/owncloud/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/owncloud.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/owncloud.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/owncloud)](https://ci-apps.yunohost.org/ci/apps/owncloud/)
+![Состояние работы](https://apps.yunohost.org/badge/state/owncloud)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/owncloud)
 
 [![Установите ownCloud с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=owncloud)
 
