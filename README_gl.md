@@ -5,7 +5,9 @@ NON debe editarse manualmente.
 
 # ownCloud para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/owncloud.svg)](https://dash.yunohost.org/appci/app/owncloud) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/owncloud.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/owncloud.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/owncloud)](https://ci-apps.yunohost.org/ci/apps/owncloud/)
+![Estado de funcionamento](https://apps.yunohost.org/badge/state/owncloud)
+![Estado de mantemento](https://apps.yunohost.org/badge/maintained/owncloud)
 
 [![Instalar ownCloud con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=owncloud)
 
