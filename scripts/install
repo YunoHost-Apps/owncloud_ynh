@@ -4,6 +4,14 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# INITIALIZE AND STORE SETTINGS
+#=================================================
+
+secret=$(ynh_string_random --length=16)
+transfer_secret=$(ynh_string_random --length=16)
+api_key=$(ynh_string_random --length=16)
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Setting up source files..."
