@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # ownCloud YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/owncloud.svg)](https://ci-apps.yunohost.org/ci/apps/owncloud/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/owncloud.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/owncloud.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/owncloud)](https://ci-apps.yunohost.org/ci/apps/owncloud/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/owncloud)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/owncloud)
 
 [![Instalatu ownCloud YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=owncloud)
 
