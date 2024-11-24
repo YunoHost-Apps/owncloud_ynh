@@ -48,8 +48,8 @@ ram.runtime = "50M"
 [resources]
 
         [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.0.0-rc.2/ocis-7.0.0-rc.2-linux-amd64"
-        amd64.sha256 = "b066a64a965e3aa605697f0cc1f0cb0bec3234b5d4dc9b5bdb761b2ca7b44129"
+        amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.0.0-rc.3/ocis-7.0.0-rc.3-linux-amd64"
+        amd64.sha256 = "bc92321b953d2e565e6c3bf657cf354011ab0c66d38accf55c9c57555c03a75a"
         arm64.url = "https://github.com/owncloud/ocis/releases/download/v6.6.1/ocis-6.6.1-linux-arm64"
         arm64.sha256 = "f807f26f0dd4463de05dcd5d6810929789ba96f7b7b775a4504ab6de3f578a8f"
         armhf.url = "https://github.com/owncloud/ocis/releases/download/v6.6.1/ocis-6.6.1-linux-arm"
