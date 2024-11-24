@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # ownCloud voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/owncloud.svg)](https://ci-apps.yunohost.org/ci/apps/owncloud/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/owncloud.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/owncloud.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/owncloud)](https://ci-apps.yunohost.org/ci/apps/owncloud/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/owncloud)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/owncloud)
 
 [![ownCloud met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=owncloud)
 
