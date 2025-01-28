@@ -65,6 +65,7 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
         autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
+                autoupdate.asset.arm64 = "^ocis-.*-linux-arm$"
         autoupdate.asset.i386 = "^ocis-.*-linux-386$"
 
     [resources.system_user]
@@ -74,8 +75,6 @@ ram.runtime = "50M"
     [resources.data_dir]
     subdirs = ["config"]
 
-    [resources.ports]
-
     [resources.permissions]
     main.url = "/"
     main.auth_header = false
@@ -84,3 +83,5 @@ ram.runtime = "50M"
     api.show_tile = false
     api.protected= true
     api.allowed = ["visitors"]
+
+    [resources.ports]
