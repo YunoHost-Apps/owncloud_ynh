@@ -11,15 +11,6 @@ ynh_script_progression "Stopping $app's systemd service..."
 ynh_systemctl  --action="stop" --log_path="systemd"
 
 #=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression "Ensuring downward compatibility..."
-
-if [[ -f "$install_dir/ocis.yaml" ]]; then
-    mv "$install_dir/ocis.yaml" "$data_dir/config/ocis.yaml"
-fi
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
