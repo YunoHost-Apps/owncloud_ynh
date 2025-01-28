@@ -69,7 +69,8 @@ ram.runtime = "50M"
         autoupdate.asset.i386 = "^ocis-.*-linux-386$"
 
     [resources.system_user]
-
+    allow_email = true
+    
     [resources.install_dir]
     
     [resources.data_dir]
