@@ -65,7 +65,7 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
         autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
-                autoupdate.asset.arm64 = "^ocis-.*-linux-arm$"
+        autoupdate.asset.armhf = "^ocis-.*-linux-arm$"
         autoupdate.asset.i386 = "^ocis-.*-linux-386$"
 
     [resources.system_user]
