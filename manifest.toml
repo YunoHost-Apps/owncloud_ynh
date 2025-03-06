@@ -5,7 +5,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "7.0.0~ynh2"
+version = "7.1.0~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -18,7 +18,7 @@ code = "https://github.com/owncloud/ocis"
 cpe = "cpe:2.3:a:owncloud:owncloud"
 
 [integration]
-yunohost = ">= 12.0.8"
+yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
@@ -51,20 +51,21 @@ ram.runtime = "50M"
 [resources]
 
         [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.0.0/ocis-7.0.0-linux-amd64"
-        amd64.sha256 = "d39fcdf348d63051c67e85559e84b44a9cc339b212f7773f34c0f90ec7895f3f"
-        arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.0.0/ocis-7.0.0-linux-arm64"
-        arm64.sha256 = "d5b1d6b276679971d04dc3f387972fac4a0d84e7c043f298442857771eff7034"
-        armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.0.0/ocis-7.0.0-linux-arm"
-        armhf.sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        i386.url = "https://github.com/owncloud/ocis/releases/download/v7.0.0/ocis-7.0.0-linux-386"
-        i386.sha256 = "816daf3f04242a30b13609ade75d25ef31a4c79f396f0f0802ff87ddf2eee91b"
+        amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.0/ocis-7.1.0-linux-amd64"
+        amd64.sha256 = "d02d8e9b380674204ec6eab101045d9dd3b85a6ff2494b66f0c7514b9e25a2a9"
+        arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.0/ocis-7.1.0-linux-arm64"
+        arm64.sha256 = "c6cb67a8d09dafbe9a23d44ec0bb0ae0ebcc4de927772f2268db10f805537e31"
+        armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.1.0/ocis-7.1.0-linux-arm"
+        armhf.sha256 = "dab3b6b974ecc72d985ad9cef354d509fd5920a4d20b8e892520161d0b99b43d"
+        i386.url = "https://github.com/owncloud/ocis/releases/download/v7.1.0/ocis-7.1.0-linux-386"
+        i386.sha256 = "7922782bbbe4f76a8fa2ac3462108460a81992790bfd595fc0380ab54f0b9680"
         in_subdir = false
         rename = "ocis"
 
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
         autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
+        autoupdate.asset.armhf = "^ocis-.*-linux-arm$"
         autoupdate.asset.i386 = "^ocis-.*-linux-386$"
 
     [resources.system_user]
@@ -74,8 +75,6 @@ ram.runtime = "50M"
     [resources.data_dir]
     subdirs = ["config"]
 
-    [resources.ports]
-
     [resources.permissions]
     main.url = "/"
     main.auth_header = false
@@ -84,3 +83,5 @@ ram.runtime = "50M"
     api.show_tile = false
     api.protected= true
     api.allowed = ["visitors"]
+
+    [resources.ports]
