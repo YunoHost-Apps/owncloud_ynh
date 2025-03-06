@@ -52,13 +52,13 @@ ram.runtime = "50M"
 
         [resources.sources.main]
         amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.0/ocis-7.1.0-linux-amd64"
-        amd64.sha256 = "d02d8e9b380674204ec6eab101045d9dd3b85a6ff2494b66f0c7514b9e25a2a9"
+        amd64.sha256 = "207a8651a19b26d08f3227a9079480ca0afc620cf1a0c0f010d853e7c2dcb67a"
         arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.0/ocis-7.1.0-linux-arm64"
-        arm64.sha256 = "c6cb67a8d09dafbe9a23d44ec0bb0ae0ebcc4de927772f2268db10f805537e31"
+        arm64.sha256 = "030643f0b8acfc130eb73e05fb4e04cbf51f9ffc86643d498e5431a9c784f8a1"
         armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.1.0/ocis-7.1.0-linux-arm"
-        armhf.sha256 = "dab3b6b974ecc72d985ad9cef354d509fd5920a4d20b8e892520161d0b99b43d"
+        armhf.sha256 = "c65d8d62c5a089782583e7bd02314f61a2224e77dfeec28306af6c05d174be0e"
         i386.url = "https://github.com/owncloud/ocis/releases/download/v7.1.0/ocis-7.1.0-linux-386"
-        i386.sha256 = "7922782bbbe4f76a8fa2ac3462108460a81992790bfd595fc0380ab54f0b9680"
+        i386.sha256 = "c1617565cd049c23e0b5ac13a0bdbdc0d8e16ef82fdcf7ee500ed9705e3768ff"
         in_subdir = false
         rename = "ocis"
 
