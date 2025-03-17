@@ -68,9 +68,14 @@ ram.runtime = "50M"
         autoupdate.asset.armhf = "^ocis-.*-linux-arm$"
         autoupdate.asset.i386 = "^ocis-.*-linux-386$"
 
-        [resources.sources.draw]
+        [resources.sources.draw-io]
         url = "https://github.com/owncloud/web-extensions/releases/download/draw-io-v0.3.0/draw-io-0.3.0.zip"
         sha256 = "64ac799eb0576da5cf7f7f1ac9308090148ad423624713beae0f1c0820b77488"
+        in_subdir = false
+
+        [resources.sources.external-sites]
+        url = "https://github.com/owncloud/web-extensions/releases/download/external-sites-v0.3.0/external-sites-0.3.0.zip"
+        sha256 = "82bb9227f95394b23b215c336ab6f133c229a988964c347b718bac23c404436a"
         in_subdir = false
 
     [resources.system_user]
