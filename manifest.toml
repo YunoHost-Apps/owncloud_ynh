@@ -71,6 +71,7 @@ ram.runtime = "50M"
         [resources.sources.draw]
         url = "https://github.com/owncloud/web-extensions/releases/download/draw-io-v0.3.0/draw-io-0.3.0.zip"
         sha256 = "64ac799eb0576da5cf7f7f1ac9308090148ad423624713beae0f1c0820b77488"
+        in_subdir = false
 
     [resources.system_user]
 
