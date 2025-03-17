@@ -81,6 +81,13 @@ ram.runtime = "50M"
         in_subdir = false
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "^external-sites-.*.zip"
+
+        [resources.sources.mdpresentation-viewer]
+        url = "https://github.com/JankariTech/web-app-presentation-viewer/releases/download/2.0.0/mdpresentation-viewer-2.0.0.zip"
+        sha256 = "2e2389b197b278d23e5488eb4f467238f00e4ffa8a9051d086fc03d476bdd186"
+        in_subdir = false
+        autoupdate.strategy = "latest_github_release"
+        autoupdate.asset = "^mdpresentation-viewer-.*.zip"
         
     [resources.system_user]
 
