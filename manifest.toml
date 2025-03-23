@@ -50,38 +50,45 @@ ram.runtime = "50M"
 
 [resources]
 
-        [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-amd64"
-        amd64.sha256 = "71af66692fcfe85c02ae3336f1a56f3d35bb2ac5332dc03f0167cde5aa5aa993"
-        arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-arm64"
-        arm64.sha256 = "f277df5968da868b3f9c421b55d4b5876cf9dd8bc6ca7a1e11c51f2cec3dbb5f"
-        armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-arm"
-        armhf.sha256 = "ded0e65259507adf61ac2c72c834e9fe8413518ce25d8d2181a9c6f7c36ba555"
-        i386.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-386"
-        i386.sha256 = "a18e5f7289fd56d08232fc9783d25ea15e56ae8274f1ed661bf8c3ae5e8d1923"
-        in_subdir = false
-        rename = "ocis"
+    [resources.sources.main]
+    amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-amd64"
+    amd64.sha256 = "71af66692fcfe85c02ae3336f1a56f3d35bb2ac5332dc03f0167cde5aa5aa993"
+    arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-arm64"
+    arm64.sha256 = "f277df5968da868b3f9c421b55d4b5876cf9dd8bc6ca7a1e11c51f2cec3dbb5f"
+    armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-arm"
+    armhf.sha256 = "ded0e65259507adf61ac2c72c834e9fe8413518ce25d8d2181a9c6f7c36ba555"
+    i386.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-386"
+    i386.sha256 = "a18e5f7289fd56d08232fc9783d25ea15e56ae8274f1ed661bf8c3ae5e8d1923"
+    in_subdir = false
+    rename = "ocis"
 
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
-        autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
-        autoupdate.asset.armhf = "^ocis-.*-linux-arm$"
-        autoupdate.asset.i386 = "^ocis-.*-linux-386$"
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
+    autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
+    autoupdate.asset.armhf = "^ocis-.*-linux-arm$"
+    autoupdate.asset.i386 = "^ocis-.*-linux-386$"
 
-        [resources.sources.draw-io]
-        url = "https://github.com/owncloud/web-extensions/releases/download/draw-io-v0.3.0/draw-io-0.3.0.zip"
-        sha256 = "64ac799eb0576da5cf7f7f1ac9308090148ad423624713beae0f1c0820b77488"
-        in_subdir = false
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.asset = "^draw-io-.*.zip"
+    [resources.sources.draw-io]
+    url = "https://github.com/owncloud/web-extensions/releases/download/draw-io-v0.3.0/draw-io-0.3.0.zip"
+    sha256 = "64ac799eb0576da5cf7f7f1ac9308090148ad423624713beae0f1c0820b77488"
+    in_subdir = false
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset = "^draw-io-.*.zip"
 
-        [resources.sources.external-sites]
-        url = "https://github.com/owncloud/web-extensions/releases/download/external-sites-v0.3.0/external-sites-0.3.0.zip"
-        sha256 = "82bb9227f95394b23b215c336ab6f133c229a988964c347b718bac23c404436a"
-        in_subdir = false
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.asset = "^external-sites-.*.zip"
+    [resources.sources.external-sites]
+    url = "https://github.com/owncloud/web-extensions/releases/download/external-sites-v0.3.0/external-sites-0.3.0.zip"
+    sha256 = "82bb9227f95394b23b215c336ab6f133c229a988964c347b718bac23c404436a"
+    in_subdir = false
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset = "^external-sites-.*.zip"
         
+    [resources.sources.unzip]
+    url = "https://github.com/owncloud/web-extensions/releases/download/unzip-v0.4.0/unzip-0.4.0.zip"
+    sha256 = "82bb9227f95394b23b215c336ab6f133c229a988964c347b718bac23c404436a"
+    in_subdir = false
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset = "^unzip-.*.zip"
+
     [resources.system_user]
 
     [resources.install_dir]
