@@ -84,7 +84,7 @@ ram.runtime = "50M"
         
     [resources.sources.unzip]
     url = "https://github.com/owncloud/web-extensions/releases/download/unzip-v0.4.0/unzip-0.4.0.zip"
-    sha256 = "82bb9227f95394b23b215c336ab6f133c229a988964c347b718bac23c404436a"
+    sha256 = "ab3a13c2e4da8185b7d992b90f7bd6e4b62dd4964cda130e53095fde043c7687"
     in_subdir = false
     autoupdate.strategy = "latest_github_release"
     autoupdate.asset = "^unzip-.*.zip"
