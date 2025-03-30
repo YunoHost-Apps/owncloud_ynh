@@ -20,7 +20,7 @@ EZ editatu eskuz.
 
 ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will be the foundation of your data management platform.
 
-**Paketatutako bertsioa:** 7.1.1~ynh1
+**Paketatutako bertsioa:** 7.1.2~ynh1
 
 **Demoa:** <https://ocis.owncloud.com/>
 
@@ -40,7 +40,7 @@ ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will b
 
 Bidali `pull request`a [`testing` abarrera](https://github.com/YunoHost-Apps/owncloud_ynh/tree/testing).
 
-`testing` abarra probatzeko, ondorengoa egin:
+`testing` abarra probatzeko, honakoa egin:
 
 ```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/owncloud_ynh/tree/testing --debug
