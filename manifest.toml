@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "owncloud"
@@ -5,14 +7,14 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "7.1.1~ynh1"
+version = "7.1.2~ynh1"
 
 maintainers = ["eric_G"]
 
 [upstream]
 license = "Apache-2.0"
 website = "https://owncloud.com"
-demo = "https://ocis.owncloud.com/"
+demo = "https://ocis.owncloud.com"
 admindoc = "https://doc.owncloud.com/ocis/next/"
 code = "https://github.com/owncloud/ocis"
 cpe = "cpe:2.3:a:owncloud:owncloud"
@@ -24,6 +26,7 @@ architectures = "all"
 multi_instance = false
 
 ldap = false
+
 sso = false
 
 disk = "100M"
@@ -50,28 +53,28 @@ ram.runtime = "50M"
 
 [resources]
 
-        [resources.sources.main]
-        amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-amd64"
-        amd64.sha256 = "71af66692fcfe85c02ae3336f1a56f3d35bb2ac5332dc03f0167cde5aa5aa993"
-        arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-arm64"
-        arm64.sha256 = "f277df5968da868b3f9c421b55d4b5876cf9dd8bc6ca7a1e11c51f2cec3dbb5f"
-        armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-arm"
-        armhf.sha256 = "ded0e65259507adf61ac2c72c834e9fe8413518ce25d8d2181a9c6f7c36ba555"
-        i386.url = "https://github.com/owncloud/ocis/releases/download/v7.1.1/ocis-7.1.1-linux-386"
-        i386.sha256 = "a18e5f7289fd56d08232fc9783d25ea15e56ae8274f1ed661bf8c3ae5e8d1923"
-        in_subdir = false
-        rename = "ocis"
+    [resources.sources.main]
+    amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.2/ocis-7.1.2-linux-amd64"
+    amd64.sha256 = "f5999a4fbabc273c0597b474984119b829ebc879cc03fcd07dcf6b3b8100d04e"
+    arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.2/ocis-7.1.2-linux-arm64"
+    arm64.sha256 = "1ef64e34a3744fa08d1d62bdd99cc17b5656bab2b9b6fb0576ea71c0f6d2e288"
+    armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.1.2/ocis-7.1.2-linux-arm"
+    armhf.sha256 = "de1b99e64e9f336311b16355e6e268148c73bfad7a419ab2750bbd10552a0395"
+    i386.url = "https://github.com/owncloud/ocis/releases/download/v7.1.2/ocis-7.1.2-linux-386"
+    i386.sha256 = "579868b56e21df0b3fccf5191771105b91edf768d38f57060625b454d767cd18"
+    in_subdir = false
+    rename = "ocis"
 
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
-        autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
-        autoupdate.asset.armhf = "^ocis-.*-linux-arm$"
-        autoupdate.asset.i386 = "^ocis-.*-linux-386$"
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset.amd64 = "^ocis-.*-linux-amd64$"
+    autoupdate.asset.arm64 = "^ocis-.*-linux-arm64$"
+    autoupdate.asset.armhf = "^ocis-.*-linux-arm$"
+    autoupdate.asset.i386 = "^ocis-.*-linux-386$"
 
     [resources.system_user]
 
     [resources.install_dir]
-    
+
     [resources.data_dir]
     subdirs = ["config"]
 
