@@ -3,7 +3,7 @@ Este archivo README esta generado automaticamente<https://github.com/YunoHost/ap
 No se debe editar a mano.
 -->
 
-# ownCloud para Yunohost
+# ownCloud para YunoHost
 
 [![Nivel de integración](https://apps.yunohost.org/badge/integration/owncloud)](https://ci-apps.yunohost.org/ci/apps/owncloud/)
 ![Estado funcional](https://apps.yunohost.org/badge/state/owncloud)
@@ -20,9 +20,10 @@ No se debe editar a mano.
 
 ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will be the foundation of your data management platform.
 
-**Versión actual:** 7.1.1~ynh1
 
-**Demo:** <https://ocis.owncloud.com/>
+**Versión actual:** 7.1.2~ynh1
+
+**Demo:** <https://ocis.owncloud.com>
 
 ## Capturas
 
