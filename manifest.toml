@@ -7,7 +7,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "7.1.3~ynh1"
+version = "7.2.0~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -54,14 +54,14 @@ ram.runtime = "50M"
 [resources]
 
     [resources.sources.main]
-    amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.3/ocis-7.1.3-linux-amd64"
-    amd64.sha256 = "0dbd083e431263e71cb0544f3c31c3846c38ffe2b718a30f75fe1cb50e9ef533"
-    arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.1.3/ocis-7.1.3-linux-arm64"
-    arm64.sha256 = "73668568004dfefaab72bfd30b896e67b7c6770e799893ce436b44a8169d9989"
-    armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.1.3/ocis-7.1.3-linux-arm"
-    armhf.sha256 = "9f5848c8f127f22c0f327fec3f89ff65946ddf2b32ebf9095266524a8958267f"
-    i386.url = "https://github.com/owncloud/ocis/releases/download/v7.1.3/ocis-7.1.3-linux-386"
-    i386.sha256 = "ab74f582e259371fd7e7460187e75ef87c16eb49bf8253daa2facd7e306c1fc4"
+    amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.2.0/ocis-7.2.0-linux-amd64"
+    amd64.sha256 = "48f9d3f0eac471897f32552197b8670e5d5264717e595ffe0f7ddb7e715b4a86"
+    arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.2.0/ocis-7.2.0-linux-arm64"
+    arm64.sha256 = "23ca1dc09123aa2e09afcbf234389f8cec20e82ce70bcf7c0695987e58108fe3"
+    armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.2.0/ocis-7.2.0-linux-arm"
+    armhf.sha256 = "aa8c80d2548df01054d17e4c6a326ab885af9c798c6347d9cb74ff4721d0c930"
+    i386.url = "https://github.com/owncloud/ocis/releases/download/v7.2.0/ocis-7.2.0-linux-386"
+    i386.sha256 = "617116e01392a0c772662797982a07f68211ffdcc10e6ae4c6d86b5f87b07c97"
     in_subdir = false
     rename = "ocis"
 
