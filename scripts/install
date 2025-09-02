@@ -14,6 +14,8 @@ source /usr/share/yunohost/helpers
 password=$YNH_APP_ARG_PASSWORD
 ynh_app_setting_set --key=password --value=$password
 
+topest_domain=$(get_topest_domain)
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
