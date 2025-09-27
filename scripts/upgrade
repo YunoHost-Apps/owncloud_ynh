@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -8,7 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --action="stop" --log_path="systemd"
+ynh_systemctl --service="$app" --action="stop" --log_path="systemd"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -24,29 +28,28 @@ ynh_setup_source --dest_dir="$install_dir/apps" --source_id="unzip"
 chmod +x $install_dir/ocis
 
 #=================================================
-# REAPPLY SYSTEM CONFIGURATIONS
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression "Updating $app's configuration files..."
+
+ynh_config_add --template=".env" --destination="$data_dir/config/ocis.env"
+
+#=================================================
+# REAPPLY SYSTEM CONFIGURATION
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
 
 ynh_config_add_nginx
 
 ynh_config_add_systemd
-
-yunohost service add $app --description="File sharing platform" --log="/var/log/$app/$app.log"
-
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression "Adding $app's configuration..."
-
-ynh_config_add --template=".env" --destination="$data_dir/config/ocis.env"
+yunohost service add "$app" --description="File sharing platform" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --action="start" --log_path="systemd"
+ynh_systemctl --service="$app" --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT
