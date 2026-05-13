@@ -11,7 +11,6 @@ source /usr/share/yunohost/helpers
 # INITIALIZE AND STORE SETTINGS
 #=================================================
 
-password=$YNH_APP_ARG_PASSWORD
 ynh_app_setting_set --key=password --value=$password
 
 #=================================================
@@ -45,6 +44,7 @@ ynh_config_add_nginx
 
 # Create a dedicated systemd config
 ynh_config_add_systemd
+
 yunohost service add "$app" --description="File sharing platform" --log="/var/log/$app/$app.log"
 
 #=================================================
@@ -65,7 +65,7 @@ chown $app:$app "$data_dir/config/ocis.yaml"
 ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
-ynh_systemctl --service="$app" --action="start" --log_path="systemd"
+ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT

@@ -7,7 +7,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "7.2.0~ynh1"
+version = "8.0.3~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -20,14 +20,13 @@ code = "https://github.com/owncloud/ocis"
 cpe = "cpe:2.3:a:owncloud:owncloud"
 
 [integration]
-yunohost = ">= 12.0.9"
+yunohost = ">= 12.1.39"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
 
 ldap = false
-
-sso = false
+sso = true
 
 disk = "100M"
 ram.build = "800M"
@@ -54,14 +53,14 @@ ram.runtime = "50M"
 [resources]
 
     [resources.sources.main]
-    amd64.url = "https://github.com/owncloud/ocis/releases/download/v7.2.0/ocis-7.2.0-linux-amd64"
-    amd64.sha256 = "48f9d3f0eac471897f32552197b8670e5d5264717e595ffe0f7ddb7e715b4a86"
-    arm64.url = "https://github.com/owncloud/ocis/releases/download/v7.2.0/ocis-7.2.0-linux-arm64"
-    arm64.sha256 = "23ca1dc09123aa2e09afcbf234389f8cec20e82ce70bcf7c0695987e58108fe3"
-    armhf.url = "https://github.com/owncloud/ocis/releases/download/v7.2.0/ocis-7.2.0-linux-arm"
-    armhf.sha256 = "aa8c80d2548df01054d17e4c6a326ab885af9c798c6347d9cb74ff4721d0c930"
-    i386.url = "https://github.com/owncloud/ocis/releases/download/v7.2.0/ocis-7.2.0-linux-386"
-    i386.sha256 = "617116e01392a0c772662797982a07f68211ffdcc10e6ae4c6d86b5f87b07c97"
+    amd64.url = "https://github.com/owncloud/ocis/releases/download/v8.0.3/ocis-8.0.3-linux-amd64"
+    amd64.sha256 = "bfd3ea9395c1720a6e430a1c799e63791145d051f375120adac86640902307ba"
+    arm64.url = "https://github.com/owncloud/ocis/releases/download/v8.0.3/ocis-8.0.3-linux-arm64"
+    arm64.sha256 = "2400cad539e1ae8c59e0af012aa98ba9de37cfe06fb9cec7dbb8c25bf435e792"
+    armhf.url = "https://github.com/owncloud/ocis/releases/download/v8.0.3/ocis-8.0.3-linux-arm"
+    armhf.sha256 = "00d14dad7111d6717b4fb925620e954d57b5d2f4ee176ad844999ee5a502a0c5"
+    i386.url = "https://github.com/owncloud/ocis/releases/download/v8.0.3/ocis-8.0.3-linux-386"
+    i386.sha256 = "7b4b96d795c3d0df345be5b29c5d0d8a15a1c0991fa6c4b0464e724acf34c61e"
     in_subdir = false
     rename = "ocis"
 
@@ -103,7 +102,7 @@ ram.runtime = "50M"
     [resources.permissions]
     main.url = "/"
     main.auth_header = false
-    api.url = "/api"
+    api.url = "/ocs"
     api.auth_header = false
     api.show_tile = false
     api.protected= true

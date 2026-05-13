@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="stop" --log_path="systemd"
+ynh_systemctl --service="$app" --action="stop"
 
 #=================================================
 # MODIFY URL IN NGINX CONF
@@ -46,7 +46,7 @@ chown $app:$app "$data_dir/config/ocis.yaml"
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start" --log_path="systemd"
+ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT
