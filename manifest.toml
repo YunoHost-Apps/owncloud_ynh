@@ -7,7 +7,7 @@ name = "ownCloud"
 description.en = "Online storage, file sharing platform"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers"
 
-version = "8.0.4~ynh1"
+version = "8.2.0~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -20,7 +20,7 @@ code = "https://github.com/owncloud/ocis"
 cpe = "cpe:2.3:a:owncloud:owncloud"
 
 [integration]
-yunohost = ">= 12.1.39"
+yunohost = ">= 12.1.40"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
@@ -53,14 +53,14 @@ ram.runtime = "50M"
 [resources]
 
     [resources.sources.main]
-    amd64.url = "https://github.com/owncloud/ocis/releases/download/v8.0.4/ocis-8.0.4-linux-amd64"
-    amd64.sha256 = "72437fa670288f04505c2b906826837aa08e5bb79048c82932c2f72153767245"
-    arm64.url = "https://github.com/owncloud/ocis/releases/download/v8.0.4/ocis-8.0.4-linux-arm64"
-    arm64.sha256 = "5c4b9d693a0bbe1991d145877ac03e6fac7e2fc46998a9bac0c169e3cf00981e"
-    armhf.url = "https://github.com/owncloud/ocis/releases/download/v8.0.4/ocis-8.0.4-linux-arm"
-    armhf.sha256 = "9c9cf8246238876149fe798b06782904c1fda38984e11618c4a562dab80cfbdc"
-    i386.url = "https://github.com/owncloud/ocis/releases/download/v8.0.4/ocis-8.0.4-linux-386"
-    i386.sha256 = "165a5b6628ba15adbe12d93bdc2da9aab7240ddc173eea71c6935f62d695a4ff"
+    amd64.url = "https://github.com/owncloud/ocis/releases/download/v8.2.0/ocis-8.2.0-linux-amd64"
+    amd64.sha256 = "12a0a4f6b3c6c926bfa75a9d58aee3913ff787c6d107ccc04d3aa18b4c0b5bd2"
+    arm64.url = "https://github.com/owncloud/ocis/releases/download/v8.2.0/ocis-8.2.0-linux-arm64"
+    arm64.sha256 = "2e14092a159270b56252e1a524c16aa36f7d2c4ba26e94d75445c06539be68ae"
+    armhf.url = "https://github.com/owncloud/ocis/releases/download/v8.2.0/ocis-8.2.0-linux-arm"
+    armhf.sha256 = "ad82a3182bf56d1cdffc06412503ead1dbf8853e82716b6ed93ad420d2cff2f7"
+    i386.url = "https://github.com/owncloud/ocis/releases/download/v8.2.0/ocis-8.2.0-linux-386"
+    i386.sha256 = "06f5e996e13fcbc5af39ebb6e7feb8177031d67ba8572e0e8ab94f2f54704c69"
     in_subdir = false
     rename = "ocis"
 
